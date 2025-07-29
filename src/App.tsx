@@ -1,5 +1,12 @@
+import MainPage from "./pages/MainPage";
+import { PageLayout } from "./components/PageLayout";
+
 function App() {
-  return <div>TITLE</div>;
+  return (
+    <PageLayout>
+      <MainPage />
+    </PageLayout>
+  );
 }
 
 export default App;
