@@ -3,9 +3,9 @@ import { PageLayout } from "./components/PageLayout";
 import MainPage from "./pages/MainPage";
 import NotesPage from "./pages/NotesPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import NotePage from "./pages/NotePage";
 
 //useParams внутри для получения параметров урл (айди)
-const NotePage = () => <h1>Note page</h1>; // скоро добавится
 
 const AppRouter = () => {
   return (
