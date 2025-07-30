@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 
 const activeFn = ({ isActive }: { isActive: boolean }) =>
-  isActive ? "active" : "";
+  isActive ? "active navigation-link" : "navigation-link";
 
 export const Navigation = () => {
   return (
