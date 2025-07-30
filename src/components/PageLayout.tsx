@@ -1,8 +1,12 @@
-import React from "react";
-interface PageLayoutProps {
-  children: React.ReactNode;
-}
+import { Outlet } from "react-router-dom";
+import { Navigation } from "./Navigation";
 
-export const PageLayout = ({ children }: PageLayoutProps) => {
-  return <div className="app-container">{children}</div>;
+
+export const PageLayout = () => {
+  return (
+    <div className="app-container">
+      <Navigation />
+      <Outlet />
+    </div>
+  );
 };
