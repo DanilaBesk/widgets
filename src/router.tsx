@@ -4,14 +4,12 @@ import MainPage from "./pages/MainPage";
 import NotesPage from "./pages/NotesPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import NotePage from "./pages/NotePage";
-import { NotesProvider } from "./models/notes/useNotes.tsx";
-
-//useParams внутри для получения параметров урл (айди)
+import { NotesProvider } from "./models/notes/NotesProvider";
 
 const AppRouter = () => {
   return (
-    <NotesProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <NotesProvider>
         <Routes>
           <Route path="/" element={<PageLayout />}>
             <Route index element={<MainPage />} />
@@ -21,8 +19,8 @@ const AppRouter = () => {
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>
-      </BrowserRouter>
-    </NotesProvider>
+      </NotesProvider>
+    </BrowserRouter>
   );
 };
 
