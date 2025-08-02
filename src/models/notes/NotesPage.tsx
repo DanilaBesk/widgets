@@ -1,4 +1,4 @@
-import { NoteList } from "../models/notes/NoteList";
+import { NoteList } from "./NoteList";
 
 const NotesPage = () => {
   return (

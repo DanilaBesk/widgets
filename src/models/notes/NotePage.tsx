@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
-import { useNotes } from "../models/notes/useNotes";
+import { useNotes } from "./useNotes";
+import { NoteNotFound } from "./NoteNotFound";
 
 const NotePage = () => {
   const { id } = useParams();
@@ -7,16 +8,8 @@ const NotePage = () => {
 
   const note = id ? notes[Number(id)] : undefined;
 
-
-
   if (!note) {
-    return (
-      <div className="notes-container">
-        <div className="note-card ">
-          <h1 className="note-title">Заметка не найдена</h1>
-        </div>
-      </div>
-    );
+    return <NoteNotFound />;
   }
 
   return (
