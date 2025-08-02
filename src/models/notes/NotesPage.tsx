@@ -1,4 +1,4 @@
-import { NoteList } from "../components/notes/NoteList";
+import { NoteList } from "./NoteList";
 
 const NotesPage = () => {
   return (
@@ -7,7 +7,7 @@ const NotesPage = () => {
         <h1>Мои заметки</h1>
         <button className="add-note-btn">+ Новая заметка</button>
       </header>
-      <NoteList notes={[]} />
+      <NoteList  />
     </>
   );
 };
