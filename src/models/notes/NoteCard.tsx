@@ -31,13 +31,13 @@ const NoteCard = ({ note }: NoteCardProps) => {
         <h2 className="note-title">{note.title}</h2>
         <div className="note-actions">
           <button onClick={onViewClickHandler} className="edit-btn">
-            <Eye size={20} />
+            <Eye size={20} color="#a9effaff" />
           </button>
           <button onClick={onEditClickHandle} className="edit-btn">
-            <Pencil size={20} />
+            <Pencil size={20} color="#e8ad46ff" />
           </button>
           <button className="delete-btn" onClick={onDeleteClickHandle}>
-            <Trash2 size={20} color="red" />
+            <Trash2 size={20} color="#e84646ff" />
           </button>
         </div>
       </div>
