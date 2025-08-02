@@ -51,21 +51,22 @@ export function NotesProvider({ children }: { children: ReactNode }) {
   }, [notes]);
 
   const addNote = (title: string, text: string) => {
+    const noteKeys = Object.keys(notes).length;
     const newId =
-      Number(Object.keys(notes).sort((a, b) => Number(b) - Number(a))[0]) + 1;
+      noteKeys > 0 ? Math.max(...Object.keys(notes).map(Number)) + 1 : 1;
     const newNote: TNote = {
       id: newId,
       title,
       text,
       createdAt: new Date(),
     };
-    setNotes((prev) => ({ ...prev, newNote }));
+    setNotes((prev) => ({ ...prev, [newId]: newNote }));
   };
 
   const deleteNote = (id: number) => {
     setNotes((prev) => {
-      delete prev[id];
-      return prev;
+      const { [id]: _, ...rest } = prev;
+      return rest;
     });
   };
 
@@ -74,10 +75,17 @@ export function NotesProvider({ children }: { children: ReactNode }) {
     updatedFields: Partial<Omit<TNote, "id" | "createdAt">>
   ) => {
     setNotes((prev) => {
-      if (prev[id]) {
-        prev[id] = { ...prev[id], ...updatedFields }; //ключи со значением undefined при деструктурищации не заменяют имеющиеся значения
-      }
-      return prev;
+      if (!prev[id]) return prev;
+
+      return {
+        ...prev,
+        [id]: {
+          ...prev[id],
+          ...Object.fromEntries(
+            Object.entries(updatedFields).filter(([_, v]) => v !== undefined)
+          ),
+        },
+      };
     });
   };
 

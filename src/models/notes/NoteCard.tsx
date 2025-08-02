@@ -1,23 +1,30 @@
 import type { TNote } from "./types";
+import { useNotes } from "./useNotes";
 
 interface NoteCardProps {
   note: TNote;
 }
 
-const NoteCard = ({ note: { createdAt, title, text } }: NoteCardProps) => {
+const NoteCard = (props: NoteCardProps) => {
+  const { deleteNote } = useNotes();
+  const onDeleteClickHandle = () => {
+    deleteNote(props.note.id);
+  };
   return (
     <div className="note-card">
       <div className="note-header">
-        <h2 className="note-title">{title}</h2>
+        <h2 className="note-title">{props.note.title}</h2>
         <div className="note-actions">
           <button className="edit-btn">✏️</button>
-          <button className="delete-btn">🗑</button>
+          <button className="delete-btn" onClick={onDeleteClickHandle}>
+            🗑
+          </button>
         </div>
       </div>
       <div className="note-content">
-        <p>{text}</p>
+        <p>{props.note.text}</p>
       </div>
-      <div className="note-date">{createdAt.toLocaleString()}</div>
+      <div className="note-date">{props.note.createdAt.toLocaleString()}</div>
     </div>
     // <div className="notes-container">
     //     <div className="note-card new-note-template">
