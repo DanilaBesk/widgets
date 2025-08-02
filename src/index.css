@@ -140,6 +140,74 @@ body {
   margin-top: 8px;
   text-align: right;
 }
+.create-note-container {
+  height: 900px;
+  width: 80%;
+  border: var(--border-color) solid 1px;
+  padding: 20px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.container-note-title {
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
+  border: var(--border-color) solid 1px;
+  border-radius: 15px;
+  padding: 10px;
+  gap: 10px;
+}
+.container-note-title input {
+  border: var(--border-color);
+  border: var(--border-color) solid 1px;
+  border-radius: 15px;
+  flex-grow: 3;
+  height: 40px;
+  padding-left: 10px;
+}
+.container-note-body {
+  border: var(--border-color);
+  border: var(--border-color) solid 1px;
+  border-radius: 15px;
+  flex-grow: 3;
+  height: 40px;
+  padding-left: 10px;
+}
+
+.widjet-list {
+  position: fixed;
+  border: var(--border-color);
+  border-radius: 15px;
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 5px;
+  overflow-y: auto;
+  background-color: var(--card);
+}
+
+.widjet {
+  flex: 0 0 46px;
+  /* border: red solid 1px; */
+  border-radius: 15px;
+  width: 44px;
+  height: 44px;
+  background-color: var(--border-color);
+
+  align-items: flex-start;
+  justify-content: center;
+  margin: 0px auto;
+  transition: 0.3s ease-in-out;
+}
+.widjet img {
+  border-radius: 50%;
+}
+.widjet:hover {
+  background-color: antiquewhite;
+}
 
 /* Стили для формы создания новой заметки */
 .new-note-template {
