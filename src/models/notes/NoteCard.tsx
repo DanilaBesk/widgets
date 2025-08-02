@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import type { TNote } from "./types";
 import { useNotes } from "./useNotes";
+import { Eye, Pencil, Trash2 } from "lucide-react";
 
 interface NoteCardProps {
   note: TNote;
@@ -19,16 +20,24 @@ const NoteCard = ({ note }: NoteCardProps) => {
     deleteNote(note.id);
   };
 
+  const onViewClickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    navigate("/notes/" + note.id);
+  };
+
   return (
     <div className="note-card">
       <div className="note-header">
         <h2 className="note-title">{note.title}</h2>
         <div className="note-actions">
+          <button onClick={onViewClickHandler} className="edit-btn">
+            <Eye size={20} color="#a9effaff" />
+          </button>
           <button onClick={onEditClickHandle} className="edit-btn">
-            ✏️
+            <Pencil size={20} color="#e8ad46ff" />
           </button>
           <button className="delete-btn" onClick={onDeleteClickHandle}>
-            🗑
+            <Trash2 size={20} color="#e84646ff" />
           </button>
         </div>
       </div>
