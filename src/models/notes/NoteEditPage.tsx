@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useNotes } from "./useNotes";
 import { NoteNotFound } from "./NoteNotFound";
 
+
 const NoteEditPage = () => {
   const { id } = useParams();
   const { notes } = useNotes();
