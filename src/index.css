@@ -10,6 +10,7 @@
   --color-border-focus: #999999;
   --color-disabled-bg: #333333;
   --color-disabled-text: #999999;
+  --color-success: #46e856ff;
 
   /* danger color */
   --color-danger: hsl(0, 50%, 45%);
@@ -102,7 +103,7 @@ body {
 }
 
 .note-card.pinned {
-  outline: #46e856ff 1px solid;
+  outline: var(--color-success) 1px solid;
 }
 
 .note-card:hover {

@@ -12,8 +12,8 @@ interface NoteCardProps {
 }
 
 const NoteCard = ({ note }: NoteCardProps) => {
-  const { deleteNote } = useNotes();
-  const { updateNote } = useNotes();
+  const { deleteNote, updateNote } = useNotes();
+
   const navigate = useNavigate();
 
   const onDeleteClickHandle = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -27,7 +27,7 @@ const NoteCard = ({ note }: NoteCardProps) => {
 
   const onPinClickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    updateNote(note.id, { isPinned: !note.isPinned });
+    updateNote(note.id, { isPinned: !note.isPinned, pinTime: new Date() });
   };
 
   return (

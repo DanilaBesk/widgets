@@ -53,7 +53,12 @@ export function NotesProvider({ children }: { children: ReactNode }) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
   }, [notes]);
 
-  const addNote = (title: string, text: string, isPinned?: boolean) => {
+  const addNote = (
+    title: string,
+    text: string,
+    isPinned?: boolean,
+    pinTime?: Date
+  ) => {
     const noteKeys = Object.keys(notes).length;
     const newId =
       noteKeys > 0 ? Math.max(...Object.keys(notes).map(Number)) + 1 : 1;
@@ -63,6 +68,7 @@ export function NotesProvider({ children }: { children: ReactNode }) {
       text,
       createdAt: new Date(),
       isPinned: isPinned ?? false,
+      pinTime,
     };
     setNotes((prev) => ({ ...prev, [newId]: newNote }));
   };
@@ -76,7 +82,7 @@ export function NotesProvider({ children }: { children: ReactNode }) {
 
   const updateNote = (
     id: number,
-    updatedFields: Partial<Omit<TNote, "id" | "createdAt" | "isPinned">>
+    updatedFields: Partial<Omit<TNote, "id" | "createdAt">>
   ) => {
     setNotes((prev) => {
       if (!prev[id]) return prev;
