@@ -1,21 +1,19 @@
 import WidgetList from "../widgets/WidgetList";
 import Button from "../../components/common/button/button";
+import Input from "../../components/common/input/input";
+import Title from "../../components/common/title/title";
 
 const CreateNotePage = () => {
   return (
     <>
-      <Button>123333</Button>
-      <h1 className="note-title">Создание заметки</h1>
+      <WidgetList />
+      <Title className="note-title">Создание заметки</Title>
       <div className="create-note-container">
-        <div className="container-note-title">
-          <h1 className="note-title"> Введите заголовок:</h1>
-          <input type="text" />
-        </div>
+        <Input maxLength={100} placeholder="Введите заголовок:" compSize="lg" />
         <div className="container-note-body">
-          <input type="text" />
+          <Button>Сохранить</Button>
         </div>
       </div>
-      <WidgetList />
     </>
   );
 };

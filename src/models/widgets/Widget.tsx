@@ -1,9 +1,5 @@
 const Widget = () => {
-  return (
-    <>
-      <div className="widjet"></div>
-    </>
-  );
+  return <div className="widjet"></div>;
 };
 
 export default Widget;

@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useNotes } from "./useNotes";
 import { NoteNotFound } from "./NoteNotFound";
+import Title from "../../components/common/title/title";
 
 const NotePage = () => {
   const { id } = useParams();
@@ -14,10 +15,10 @@ const NotePage = () => {
 
   return (
     <div className="notes-container">
-      <div className="note-card ">
-        <h1 className="note-title">Заметка номер {id}</h1>
+      <div className="note-card">
+        <Title level={1}>Заметка номер {id}</Title>
         <div>{note.text}</div>
-        <div>{note.createdAt.toDateString()}</div>
+        <div>{note.createdAt.toLocaleString()}</div>
       </div>
     </div>
   );

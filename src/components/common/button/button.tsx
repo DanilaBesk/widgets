@@ -1,16 +1,27 @@
-import classes from "./styles.module.css";
+import React from "react";
+import styles from "./button.module.css";
+import cn from "classnames";
 
-interface ButtonProps {
-  onClick?: () => void;
-  children: React.ReactNode;
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: "default" | "accent" | "danger" | "ghost";
+  compSize?: "sm" | "md" | "lg";
 }
 
-export const Button = ({ onClick, children }: ButtonProps) => {
+export default function Button({
+  variant = "default",
+  compSize = "md",
+  className,
+  ...props
+}: ButtonProps) {
   return (
-    <div onClick={onClick} className={classes["my-btn"]}>
-      {children}
-    </div>
+    <button
+      className={cn(
+        styles.button,
+        styles[variant],
+        styles[compSize],
+        className
+      )}
+      {...props}
+    />
   );
-};
-
-export default Button;
+}

@@ -1,4 +1,4 @@
-import NoteCard from "./NoteCard";
+import NoteCardMini from "./NoteCardMini";
 import { useNotes } from "./useNotes";
 
 export const NoteList = () => {
@@ -7,7 +7,7 @@ export const NoteList = () => {
   return (
     <div className="notes-container">
       {Object.values(notes).map((note) =>
-        note ? <NoteCard note={note} key={note.id} /> : null
+        note ? <NoteCardMini note={note} key={note.id} /> : null
       )}
     </div>
   );
