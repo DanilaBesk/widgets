@@ -3,6 +3,7 @@ export type TNote = {
   title: string;
   text: string;
   createdAt: Date;
+  isPinned: boolean;
 };
 
 export type TNoteStorage = Record<string, TNote | undefined>;
