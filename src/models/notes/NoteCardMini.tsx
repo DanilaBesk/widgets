@@ -27,7 +27,7 @@ const NoteCard = ({ note }: NoteCardProps) => {
 
   const onPinClickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    updateNote(note.id, { isPinned: !note.isPinned, pinTime: new Date() });
+    updateNote(note.id, { isPinned: !note.isPinned });
   };
 
   return (
@@ -36,13 +36,19 @@ const NoteCard = ({ note }: NoteCardProps) => {
       onClick={onViewClickHandler}
     >
       <div className="note-header">
-        <Title level={3}>{note.title}</Title>
+        <Title level={3}>
+          {note.id}) {note.title}{" "}
+        </Title>
         <div className="note-actions">
           <Button onClick={onDeleteClickHandle} variant="ghost" compSize="sm">
             <Trash2 size={20} color="#e84646ff" />
           </Button>
           <Button onClick={onPinClickHandler} variant="ghost" compSize="sm">
-            <Pin size={20} color={note.isPinned ? "#46e856ff" : "#a3a3a3ff"} />
+            <Pin
+              size={20}
+              color={note.isPinned ? "#46e856ff" : "#a3a3a3ff"}
+              style={{ rotate: note.isPinned ? "-90deg" : "0deg" }}
+            />
           </Button>
         </div>
       </div>

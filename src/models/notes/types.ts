@@ -4,7 +4,7 @@ export type TNote = {
   text: string;
   createdAt: Date;
   isPinned: boolean;
-  pinTime?: Date;
+  pinTime: Date | null;
 };
 
 export type TNoteStorage = Record<string, TNote | undefined>;
