@@ -5,6 +5,7 @@ import { Trash2 } from "lucide-react";
 import { Pin } from "lucide-react";
 import Title from "../../components/common/title/title";
 import Button from "../../components/common/button/button";
+import classNames from "classnames";
 
 interface NoteCardProps {
   note: TNote;
@@ -31,7 +32,7 @@ const NoteCard = ({ note }: NoteCardProps) => {
 
   return (
     <div
-      className={note.isPinned ? "pinned-note-card" : "note-card"}
+      className={classNames(["note-card", note.isPinned && "pinned"])}
       onClick={onViewClickHandler}
     >
       <div className="note-header">
