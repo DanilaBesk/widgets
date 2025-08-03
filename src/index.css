@@ -10,6 +10,7 @@
   --color-border-focus: #999999;
   --color-disabled-bg: #333333;
   --color-disabled-text: #999999;
+  --color-success: #46e856ff;
 
   /* danger color */
   --color-danger: hsl(0, 50%, 45%);
@@ -50,7 +51,7 @@ body {
   min-height: 100vh;
   max-width: 1230px;
   padding: 40px 15px;
-  gap: 1rem
+  gap: 1rem;
 }
 
 .app-header,
@@ -101,9 +102,14 @@ body {
   height: 250px;
 }
 
+.note-card.pinned {
+  outline: var(--color-success) 1px solid;
+}
+
 .note-card:hover {
   box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.302),
     0 4px 8px 3px rgba(60, 64, 67, 0.149);
+  outline: 1px solid var(--btn-accent-text);
 }
 
 .note-header {

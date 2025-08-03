@@ -14,18 +14,21 @@ export function NotesProvider({ children }: { children: ReactNode }) {
           title: "Покупки",
           text: "Купить хлеб, молоко и сыр.",
           createdAt: new Date("2025-07-30T10:00:00"),
+          isPinned: false,
         },
         2: {
           id: 2,
           title: "Идея проекта",
           text: "Создать приложение для заметок с тегами и поиском.",
           createdAt: new Date("2025-07-31T14:30:00"),
+          isPinned: false,
         },
         3: {
           id: 3,
           title: "Цели на август",
           text: "1. Начать бегать утром.\n2. Закончить мини-проект на React.\n3. Прочитать 1 книгу.",
           createdAt: new Date("2025-08-01T09:15:00"),
+          isPinned: true,
         },
       })
     );
@@ -50,15 +53,19 @@ export function NotesProvider({ children }: { children: ReactNode }) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
   }, [notes]);
 
-  const addNote = (title: string, text: string) => {
+  const addNote = (title: string, text: string, isPinned?: boolean) => {
     const noteKeys = Object.keys(notes).length;
     const newId =
       noteKeys > 0 ? Math.max(...Object.keys(notes).map(Number)) + 1 : 1;
+    const pinTime = isPinned ? new Date() : null;
+
     const newNote: TNote = {
       id: newId,
       title,
       text,
       createdAt: new Date(),
+      isPinned: isPinned ?? false,
+      pinTime,
     };
     setNotes((prev) => ({ ...prev, [newId]: newNote }));
   };
@@ -72,10 +79,12 @@ export function NotesProvider({ children }: { children: ReactNode }) {
 
   const updateNote = (
     id: number,
-    updatedFields: Partial<Omit<TNote, "id" | "createdAt">>
+    updatedFields: Partial<Pick<TNote, "isPinned" | "text" | "title">>
   ) => {
     setNotes((prev) => {
       if (!prev[id]) return prev;
+
+      const pinTime = updatedFields.isPinned ? new Date() : null;
 
       return {
         ...prev,
@@ -84,6 +93,7 @@ export function NotesProvider({ children }: { children: ReactNode }) {
           ...Object.fromEntries(
             Object.entries(updatedFields).filter(([_, v]) => v !== undefined)
           ),
+          pinTime,
         },
       };
     });

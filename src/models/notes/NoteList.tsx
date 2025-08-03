@@ -6,9 +6,15 @@ export const NoteList = () => {
 
   return (
     <div className="notes-container">
-      {Object.values(notes).map((note) =>
-        note ? <NoteCardMini note={note} key={note.id} /> : null
-      )}
+      {Object.values(notes)
+        .filter((note) => !!note)
+        .sort(
+          (a, b) =>
+            (b.pinTime?.getTime() ?? 0) - (a.pinTime?.getTime() ?? 0)
+        )
+        .map((note) => (
+          <NoteCardMini note={note} key={note.id} />
+        ))}
     </div>
   );
 };
