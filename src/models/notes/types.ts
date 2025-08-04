@@ -11,7 +11,7 @@ export type TNoteStorage = Record<string, TNote | undefined>;
 
 export type TNotesContext = {
   notes: TNoteStorage;
-  addNote: (title: string, text: string) => void;
+  addNote: (title: string, text: string, isPinned: boolean) => void;
   deleteNote: (id: number) => void;
   updateNote: (
     id: number,
