@@ -3,6 +3,7 @@ import Button from "../components/common/button/button";
 import { NoteList } from "../models/notes/NoteList";
 import { useState } from "react";
 import { Dialog } from "../components/common/dialog/dialog";
+import WeatherWidget from "../models/widgets/WeatherWidjet";
 
 const MainPage = () => {
   const [open, setOpen] = useState(false);
@@ -27,6 +28,7 @@ const MainPage = () => {
         <Dialog open={open} onDialogClose={() => setOpen(false)}>
           <Title level={1}>Hello</Title>
         </Dialog>
+      <WeatherWidget/>
       </main>
     </>
   );
