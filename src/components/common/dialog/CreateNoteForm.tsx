@@ -49,20 +49,22 @@ const CreateNoteForm = ({ onClose }: { onClose: () => void }) => {
             onChange={(e) => setBody(e.target.value)}
           />
         </div>
-        <Button onClick={onPinClickHandler} variant="accent" compSize="sm">
-          <Pin
-            size={20}
-            color={newNoteIsPinned ? "#46e856ff" : "#a3a3a3ff"}
-            style={{ rotate: newNoteIsPinned ? "-90deg" : "0deg" }}
-          />
-        </Button>
-        <Button
-          variant="accent"
-          compSize="lg"
-          onClick={() => createNoteClickHandler(title, body, newNoteIsPinned)}
-        >
-          Create note
-        </Button>
+        <div className="btn-row">
+          <Button onClick={onPinClickHandler} variant="accent" compSize="sm">
+            <Pin
+              size={20}
+              color={newNoteIsPinned ? "#46e856ff" : "#a3a3a3ff"}
+              style={{ rotate: newNoteIsPinned ? "-90deg" : "0deg" }}
+            />
+          </Button>
+          <Button
+            variant="accent"
+            compSize="lg"
+            onClick={() => createNoteClickHandler(title, body, newNoteIsPinned)}
+          >
+            Create note
+          </Button>
+        </div>
       </div>
     </div>
   );

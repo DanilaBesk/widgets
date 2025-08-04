@@ -69,6 +69,7 @@ body {
   align-items: left;
   justify-content: left;
 }
+
 .body-input-wrapper textarea {
   min-height: 150px;
   flex-grow: 1;
@@ -94,6 +95,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: start;
+}
+.btn-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 10px;
 }
 
 .notes-container {
