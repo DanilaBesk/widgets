@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import styles from "./styles.module.css";
 
 interface WeatherCodeMessage {
   [code: number]: string;
@@ -10,6 +11,7 @@ const WeatherWidget = () => {
   const [temperature, setTemperature] = useState("0");
   const [latitude, setLatitude] = useState(55.75);
   const [longitude, setLongtitude] = useState(37.62);
+  const [isLoading, setIsLoading] = useState(false);
 
   const weatherCodeMessage: WeatherCodeMessage = {
     0: "Ясно ☀️",
@@ -45,34 +47,49 @@ const WeatherWidget = () => {
   const currentWeatherMessage: string =
     weatherCodeMessage[weather] || "Неизветная погода";
 
-  useEffect(() => {
-    async function getWeather(latitude: number, longitude: number) {
-      try {
-        const response = await axios.get(
-          `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,wind_speed_10m,weather_code`
-        );
-        console.log(response.data.current.temperature_2m);
-        setTemperature(`${response.data.current.temperature_2m}°C`);
-        setWeather(response.data.current.weather_code);
-      } catch (error) {
-        setTemperature("-99");
-        setWeather(900);
-        console.log("ошибка");
-      }
+  async function getWeather(latitude: number, longitude: number) {
+    try {
+      const response = await axios.get(
+        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,wind_speed_10m,weather_code`
+      );
+      console.log(response.data.current.temperature_2m);
+      setTemperature(`${response.data.current.temperature_2m}°C`);
+      setWeather(response.data.current.weather_code);
+    } catch (error) {
+      setTemperature("-99");
+      setWeather(900);
+      console.log("ошибка");
     }
+  }
 
-    navigator.geolocation.getCurrentPosition((position) => {
-      setLatitude(Math.round(position.coords.latitude * 100) / 100);
-      setLongtitude(Math.round(position.coords.longitude * 100) / 100);
-      console.log(`Получены координаты ${latitude} ${longitude}`);
-    });
-
-    getWeather(latitude, longitude);
-  }, [weather, temperature, latitude, longitude]);
+  useEffect(() => {
+    const getLocation = async () => {
+      setIsLoading(true);
+      try {
+        await navigator.geolocation.getCurrentPosition((position) => {
+          setLatitude(Math.round(position.coords.latitude * 100) / 100);
+          setLongtitude(Math.round(position.coords.longitude * 100) / 100);
+          console.log(`Получены координаты ${latitude} ${longitude}`);
+        });
+        getWeather(latitude, longitude);
+      } catch (error) {
+        console.log(`Координаты не получены ${latitude} ${longitude}`);
+        getWeather(latitude, longitude);
+      }
+      setIsLoading(false);
+    };
+    getLocation();
+  }, []);
   return (
     <div>
-      <h1>{currentWeatherMessage}</h1>
-      <h1>{temperature}</h1>
+      <div className={styles.widget}>
+        <div className={styles.temperatureBlock}>
+          <h1>{isLoading ? "..." : temperature}</h1>
+        </div>
+        <div className={styles.weatherDescription}>
+          <h1>{isLoading ? "Идёт загрузка" : currentWeatherMessage}</h1>
+        </div>
+      </div>
     </div>
   );
 };

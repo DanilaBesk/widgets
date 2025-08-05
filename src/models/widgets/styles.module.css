@@ -1,0 +1,38 @@
+.widget {
+  display: flex;
+  width: 200px;
+  height: 50px;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-bg-card);
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  transition: 0.2s ease-in-out;
+  border-radius: 15px;
+}
+
+.widget:hover {
+  transform: scale(1.02);
+}
+.temperatureBlock {
+  text-transform: capitalize;
+}
+
+/* Медиа-запрос для экранов <= 650px */
+@media (max-width: 650px) {
+  .weatherDescription {
+    display: none; /* Скрываем описание */
+  }
+
+  .widget {
+    padding: 10px 15px; /* Уменьшаем отступы */
+    width: 80px; /* Фиксируем ширину */
+  }
+
+  .widget.temperatureBlock {
+    font-size: 1.4rem; /* Увеличиваем температуру */
+    margin: 0;
+  }
+}
