@@ -154,15 +154,23 @@ const WeatherWidget = () => {
   }
 
   useEffect(() => {
+    function getPositionPromise(): Promise<GeolocationPosition> {
+      return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject);
+      });
+    }
+
     const getLocation = async () => {
       setIsLoading(true);
       try {
-        await navigator.geolocation.getCurrentPosition((position) => {
-          setLatitude(Math.round(position.coords.latitude * 100) / 100);
-          setLongtitude(Math.round(position.coords.longitude * 100) / 100);
-          console.log(`Получены координаты ${latitude} ${longitude}`);
-        });
-        getWeather(latitude, longitude);
+        const responce = await getPositionPromise();
+        const temp_latitude = Math.round(responce.coords.latitude * 100) / 100;
+        const temp_longitude =
+          Math.round(responce.coords.longitude * 100) / 100;
+        setLatitude(temp_latitude);
+        setLongtitude(temp_longitude);
+        console.log(`Получены координаты ${temp_latitude} ${temp_longitude}`);
+        getWeather(temp_latitude, temp_longitude);
       } catch (error) {
         console.log(`Координаты не получены ${latitude} ${longitude}`);
         getWeather(latitude, longitude);
