@@ -1,5 +1,5 @@
-import { Dialog } from "./dialog";
-import Title from "../title/title";
+import { Dialog } from "../../components/common/dialog/dialog";
+import Title from "../../components/common/title/title";
 import CreateNoteForm from "./CreateNoteForm";
 
 interface NoteCreateDialogProps {

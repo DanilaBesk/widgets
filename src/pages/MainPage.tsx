@@ -3,7 +3,7 @@ import Button from "../components/common/button/button";
 import { NoteList } from "../models/notes/NoteList";
 import { useState } from "react";
 
-import DialogCreateForm from "../components/common/dialog/DialogCreateNote";
+import DialogCreateForm from "../models/notes/DialogCreateNote";
 
 const MainPage = () => {
   const [open, setOpen] = useState(false);

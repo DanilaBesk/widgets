@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Button from "../button/button";
-import Input from "../input/input";
-import { useNotes } from "../../../models/notes/useNotes";
+import Button from "../../components/common/button/button";
+import Input from "../../components/common/input/input";
+import { useNotes } from "./useNotes";
 import { Pin } from "lucide-react";
-import TextArea from "../textarea/textArea";
+import TextArea from "../../components/common/textarea/textArea";
 
 const CreateNoteForm = ({ onClose }: { onClose: () => void }) => {
   const [title, setTitle] = useState("");
