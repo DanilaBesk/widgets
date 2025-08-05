@@ -12,27 +12,59 @@
   transition: 0.2s ease-in-out;
   border-radius: 15px;
 }
-
+.weatherIcon {
+  font-size: 1.4rem;
+  margin: 0;
+  min-width: 40px;
+}
 .widget:hover {
   transform: scale(1.02);
 }
 .temperatureBlock {
   text-transform: capitalize;
+  padding-left: 10px;
 }
 
-/* Медиа-запрос для экранов <= 650px */
 @media (max-width: 650px) {
+  .weatherIcon {
+    font-size: 1.4rem;
+    margin: 0;
+    min-width: 40px;
+    display: block;
+    margin-right: 5px;
+  }
   .weatherDescription {
-    display: none; /* Скрываем описание */
+    display: none;
   }
 
   .widget {
-    padding: 10px 15px; /* Уменьшаем отступы */
-    width: 80px; /* Фиксируем ширину */
+    padding: 10px 15px;
+    width: 140px;
   }
 
-  .widget.temperatureBlock {
-    font-size: 1.4rem; /* Увеличиваем температуру */
+  .temperatureBlock {
+    font-size: 1.4rem;
     margin: 0;
+  }
+}
+
+@media (max-width: 450px) {
+  .weatherIcon {
+    font-size: 1.4rem;
+    margin-top: 5px;
+    min-width: 40px;
+    margin-right: 0px;
+  }
+  .weatherDescription {
+    display: none;
+  }
+
+  .widget {
+    padding: 10px 15px;
+    width: 60px;
+  }
+
+  .temperatureBlock {
+    display: none;
   }
 }
