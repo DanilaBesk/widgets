@@ -15,6 +15,7 @@ export function NotesProvider({ children }: { children: ReactNode }) {
           text: "Купить хлеб, молоко и сыр.",
           createdAt: new Date("2025-07-30T10:00:00"),
           isPinned: false,
+          pinTime: null,
         },
         2: {
           id: 2,
@@ -22,6 +23,7 @@ export function NotesProvider({ children }: { children: ReactNode }) {
           text: "Создать приложение для заметок с тегами и поиском.",
           createdAt: new Date("2025-07-31T14:30:00"),
           isPinned: false,
+          pinTime: null,
         },
         3: {
           id: 3,
@@ -29,6 +31,7 @@ export function NotesProvider({ children }: { children: ReactNode }) {
           text: "1. Начать бегать утром.\n2. Закончить мини-проект на React.\n3. Прочитать 1 книгу.",
           createdAt: new Date("2025-08-01T09:15:00"),
           isPinned: true,
+          pinTime: new Date(),
         },
       })
     );
@@ -40,6 +43,7 @@ export function NotesProvider({ children }: { children: ReactNode }) {
         const note = parsed[id];
         if (note) {
           note.createdAt = new Date(note.createdAt);
+          note.pinTime = note.pinTime ? new Date(note.pinTime) : null;
         }
       }
       return parsed;
