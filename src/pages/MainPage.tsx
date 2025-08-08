@@ -4,6 +4,7 @@ import { NoteList } from "../models/notes/NoteList";
 import { useState } from "react";
 
 import DialogCreateForm from "../models/notes/DialogCreateNote";
+import WeatherWidget from "../models/widgets/WeatherWidjet";
 
 const MainPage = () => {
   const [open, setOpen] = useState(false);
@@ -26,6 +27,7 @@ const MainPage = () => {
         </div>
         <NoteList />
         <DialogCreateForm open={open} onClose={() => setOpen(false)} />
+      <WeatherWidget/>
       </main>
     </>
   );
