@@ -140,7 +140,6 @@ body {
 
 .note-actions {
   display: flex;
-  gap: 8px;
 }
 
 .note-content {

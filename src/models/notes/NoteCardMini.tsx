@@ -37,7 +37,7 @@ const NoteCard = ({ note }: NoteCardProps) => {
     >
       <div className="note-header">
         <Title level={3}>
-          {note.id} {note.title}{" "}
+          {note.id}{")"} {note.title}
         </Title>
         <div className="note-actions">
           <Button onClick={onDeleteClickHandle} variant="ghost" compSize="sm">
