@@ -2,7 +2,8 @@ import Title from "../components/common/title/title";
 import Button from "../components/common/button/button";
 import { NoteList } from "../models/notes/NoteList";
 import { useState } from "react";
-import { Dialog } from "../components/common/dialog/dialog";
+
+import DialogCreateForm from "../models/notes/DialogCreateNote";
 
 const MainPage = () => {
   const [open, setOpen] = useState(false);
@@ -24,9 +25,7 @@ const MainPage = () => {
           </Button>
         </div>
         <NoteList />
-        <Dialog open={open} onDialogClose={() => setOpen(false)}>
-          <Title level={1}>Hello</Title>
-        </Dialog>
+        <DialogCreateForm open={open} onClose={() => setOpen(false)} />
       </main>
     </>
   );

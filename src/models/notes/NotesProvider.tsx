@@ -53,7 +53,7 @@ export function NotesProvider({ children }: { children: ReactNode }) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
   }, [notes]);
 
-  const addNote = (title: string, text: string, isPinned?: boolean) => {
+  const addNote = (title: string, text: string, isPinned: boolean) => {
     const noteKeys = Object.keys(notes).length;
     const newId =
       noteKeys > 0 ? Math.max(...Object.keys(notes).map(Number)) + 1 : 1;
