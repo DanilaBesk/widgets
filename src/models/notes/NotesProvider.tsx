@@ -5,51 +5,122 @@ import { NotesContext } from "./NotesContext";
 export function NotesProvider({ children }: { children: ReactNode }) {
   const STORAGE_KEY = "notes";
 
+  const defaultNotes: TNoteStorage = {
+    1: {
+      id: 1,
+      title: "Покупки",
+      text: "Купить хлеб, молоко и сыр.",
+      createdAt: new Date("2025-07-30T10:00:00"),
+      isPinned: false,
+      pinTime: null,
+    },
+    2: {
+      id: 2,
+      title: "Идея проекта",
+      text: "Создать приложение для заметок с тегами и поиском.",
+      createdAt: new Date("2025-07-31T14:30:00"),
+      isPinned: false,
+      pinTime: null,
+    },
+    3: {
+      id: 3,
+      title: "Цели на август",
+      text: "1. Начать бегать утром.\n2. Закончить мини-проект на React.\n3. Прочитать 1 книгу.",
+      createdAt: new Date("2025-08-01T09:15:00"),
+      isPinned: true,
+      pinTime: new Date(),
+    },
+    4: {
+      id: 4,
+      title: "Покупки",
+      text: "Купить хлеб, молоко и сыр.",
+      createdAt: new Date("2025-07-30T10:00:00"),
+      isPinned: false,
+      pinTime: null,
+    },
+    5: {
+      id: 5,
+      title: "Идея проекта",
+      text: "Создать приложение для заметок с тегами и поиском.",
+      createdAt: new Date("2025-07-31T14:30:00"),
+      isPinned: false,
+      pinTime: null,
+    },
+    6: {
+      id: 6,
+      title: "Цели на август",
+      text: "1. Начать бегать утром.\n2. Закончить мини-проект на React.\n3. Прочитать 1 книгу.",
+      createdAt: new Date("2025-08-01T09:15:00"),
+      isPinned: true,
+      pinTime: new Date(),
+    },
+    7: {
+      id: 7,
+      title: "Покупки",
+      text: "Купить хлеб, молоко и сыр.",
+      createdAt: new Date("2025-07-30T10:00:00"),
+      isPinned: false,
+      pinTime: null,
+    },
+    8: {
+      id: 8,
+      title: "Идея проекта",
+      text: "Создать приложение для заметок с тегами и поиском.",
+      createdAt: new Date("2025-07-31T14:30:00"),
+      isPinned: false,
+      pinTime: null,
+    },
+    9: {
+      id: 9,
+      title: "Цели на август",
+      text: "1. Начать бегать утром.\n2. Закончить мини-проект на React.\n3. Прочитать 1 книгу.",
+      createdAt: new Date("2025-08-01T09:15:00"),
+      isPinned: true,
+      pinTime: new Date(),
+    },
+    10: {
+      id: 10,
+      title: "Покупки",
+      text: "Купить хлеб, молоко и сыр.",
+      createdAt: new Date("2025-07-30T10:00:00"),
+      isPinned: false,
+      pinTime: null,
+    },
+    11: {
+      id: 11,
+      title: "Идея проекта",
+      text: "Создать приложение для заметок с тегами и поиском.",
+      createdAt: new Date("2025-07-31T14:30:00"),
+      isPinned: false,
+      pinTime: null,
+    },
+    12: {
+      id: 12,
+      title: "Цели на август",
+      text: "1. Начать бегать утром.\n2. Закончить мини-проект на React.\n3. Прочитать 1 книгу.",
+      createdAt: new Date("2025-08-01T09:15:00"),
+      isPinned: true,
+      pinTime: new Date(),
+    },
+  };
+
   const [notes, setNotes] = useState<TNoteStorage>(() => {
-    localStorage.setItem(
-      "notes",
-      JSON.stringify({
-        1: {
-          id: 1,
-          title: "Покупки",
-          text: "Купить хлеб, молоко и сыр.",
-          createdAt: new Date("2025-07-30T10:00:00"),
-          isPinned: false,
-          pinTime: null,
-        },
-        2: {
-          id: 2,
-          title: "Идея проекта",
-          text: "Создать приложение для заметок с тегами и поиском.",
-          createdAt: new Date("2025-07-31T14:30:00"),
-          isPinned: false,
-          pinTime: null,
-        },
-        3: {
-          id: 3,
-          title: "Цели на август",
-          text: "1. Начать бегать утром.\n2. Закончить мини-проект на React.\n3. Прочитать 1 книгу.",
-          createdAt: new Date("2025-08-01T09:15:00"),
-          isPinned: true,
-          pinTime: new Date(),
-        },
-      })
-    );
-    const stored = localStorage.getItem(STORAGE_KEY);
+    const stored = localStorage.getItem("notes");
+    if (!stored) {
+      return defaultNotes;
+    }
     try {
-      const parsed = stored ? (JSON.parse(stored) as TNoteStorage) : {};
+      const parsed = JSON.parse(stored);
 
       for (const id in parsed) {
-        const note = parsed[id];
-        if (note) {
-          note.createdAt = new Date(note.createdAt);
-          note.pinTime = note.pinTime ? new Date(note.pinTime) : null;
-        }
+        parsed[id].createdAt = new Date(parsed[id].createdAt);
+        parsed[id].pinTime = parsed[id].pinTime
+          ? new Date(parsed[id].pinTime)
+          : null;
       }
       return parsed;
-    } catch (error) {
-      console.error(error);
-      return {};
+    } catch {
+      return defaultNotes;
     }
   });
 
