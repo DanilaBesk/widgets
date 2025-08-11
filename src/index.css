@@ -1,3 +1,6 @@
+html {
+  scroll-behavior: smooth;
+}
 :root {
   /* Общие цвета приложения */
   --color-bg-dark: #121212;

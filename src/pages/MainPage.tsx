@@ -1,17 +1,42 @@
 import Title from "../components/common/title/title";
 import Button from "../components/common/button/button";
-import { NoteList } from "../models/notes/NoteList";
-import { useState } from "react";
 
 import DialogCreateForm from "../models/notes/DialogCreateNote";
+import DialogSetFilter from "../models/notes/DialogSetFilter";
+import NoteListsSection from "../models/notes/NoteListsSection";
+import type { TNoteListsSectionHandle } from "../models/notes/NoteListsSection";
+import { useEffect } from "react";
+
+import { useState, useRef } from "react";
 
 const MainPage = () => {
   const [open, setOpen] = useState(false);
+  const [openFilter, setOpenFilter] = useState(false);
+
+  const noteListsSectionRef = useRef<TNoteListsSectionHandle | null>(null);
 
   const createNoteClickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setOpen(true);
   };
+
+  const setFilterClickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setOpenFilter(true);
+  };
+
+  useEffect(() => {
+    const keyDownHandler = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.key.toLowerCase() === "u") {
+        e.preventDefault();
+        setOpenFilter(true);
+      }
+    };
+    window.addEventListener("keydown", keyDownHandler);
+    return () => {
+      window.removeEventListener("keydown", keyDownHandler);
+    };
+  }, []);
 
   return (
     <>
@@ -23,9 +48,19 @@ const MainPage = () => {
           <Button variant="accent" onClick={createNoteClickHandler}>
             + Новая заметка
           </Button>
+          <Button variant="accent" onClick={setFilterClickHandler}>
+            Открыть фильтры
+          </Button>
         </div>
-        <NoteList />
+
+        <NoteListsSection ref={noteListsSectionRef} />
+
         <DialogCreateForm open={open} onClose={() => setOpen(false)} />
+        <DialogSetFilter
+          open={openFilter}
+          onClose={() => setOpenFilter(false)}
+          noteListsSectionRef={noteListsSectionRef}
+        />
       </main>
     </>
   );
