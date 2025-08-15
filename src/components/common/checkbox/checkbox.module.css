@@ -1,0 +1,42 @@
+.checkbox {
+  display: flex;
+  width: 1.35rem;
+  height: 1.35rem;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  border-radius: 6px;
+  font-size: 1rem;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+  outline: none;
+  appearance: none;
+}
+
+.checkbox:checked {
+  background-color: var(--color-bg);
+  position: relative
+}
+
+input[type="checkbox"]:checked::after {
+  /* TODO: переделать на svg*/
+  content: "✓";
+  color: white;
+  font-size: 16px;
+  position: absolute;
+  left: 3px;
+  top: 0;
+}
+
+.checkbox:focus {
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 2px rgba(153, 153, 153, 0.3);
+}
+
+.checkbox:disabled {
+  background-color: var(--color-disabled-bg);
+  color: var(--color-disabled-text);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
