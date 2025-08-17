@@ -74,14 +74,20 @@ export function DataProvider({ children }: { children: ReactNode }) {
 
   const updateNote = useCallback<DataContextValue['updateNote']>((id, fields) => {
     setNotes((prev) => {
-      if (!prev[id]) {
+      const note = prev[id];
+      if (!note) {
         toast.error('Не смог найти заметку.');
         return prev;
       }
-      const pinTime = fields.isPinned ? new Date() : (prev[id].pinTime ?? null);
+      let pinTime = note.pinTime;
+      if (fields.isPinned) {
+        pinTime = new Date();
+      } else if (fields.isPinned === false) {
+        pinTime = null;
+      }
       return {
         ...prev,
-        [id]: { ...prev[id], ...fields, pinTime },
+        [id]: { ...note, ...fields, pinTime },
       };
     });
   }, []);

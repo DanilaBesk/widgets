@@ -1,0 +1,22 @@
+.dialogOutBackgroud {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.dialog {
+  position: relative;
+  min-width: 60vw;
+  border-radius: 10px;
+  background-color: var(--color-bg-card);
+  padding: 1rem;
+  max-height: 90vh;
+  overflow: scroll;
+}
+
+.buttonClose {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  cursor: pointer;
+}

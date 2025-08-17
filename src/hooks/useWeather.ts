@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useGeolocation } from './useGeolocation';
 import { fetchWeather } from '../api/weather';
 import type { FetchResponse as FetchWeatherResponse } from '../api/weather/types';
-import type { TWeatherWidget } from '../models/widgets/weather/types';
+import type { TWeatherWidget } from '../components/widgets/weather/types';
 
 export function useWeather(config: TWeatherWidget['config']) {
   const { isLocating, latitude, longitude } = useGeolocation();
@@ -10,7 +10,7 @@ export function useWeather(config: TWeatherWidget['config']) {
   const [data, setData] = useState<FetchWeatherResponse | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  console.log('GEOLOCATION', latitude, longitude);
+
   async function getWeather() {
     try {
       setIsLoading(true);

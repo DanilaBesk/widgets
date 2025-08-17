@@ -1,5 +1,5 @@
 import type { UnionToMap } from '../../lib/utility-types';
-import type { TWeatherWidget } from '../../models/widgets/weather/types';
+import type { TWeatherWidget } from '../../components/widgets/weather/types';
 
 export type TNote = {
   id: number;

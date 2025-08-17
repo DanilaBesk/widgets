@@ -5,12 +5,15 @@ import AppRouter from './router.tsx';
 import { StrictMode } from 'react';
 import { Toaster } from './config/sonner.tsx';
 import { DataProvider } from './store/data/provider.tsx';
+import { ModalProvider } from './store/modal/provider.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <DataProvider>
-      <Toaster />
-      <AppRouter />
+      <ModalProvider>
+        <Toaster />
+        <AppRouter />
+      </ModalProvider>
     </DataProvider>
   </StrictMode>,
 );

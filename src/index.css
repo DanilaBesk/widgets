@@ -11,10 +11,11 @@
   --color-disabled-bg: #333333;
   --color-disabled-text: #999999;
   --color-success: #46e856ff;
+  --color-pinned: #f9f9f9;
 
   /* danger color */
-  --color-danger: hsl(0, 50%, 45%);
-  --color-danger-bg: #4f3535;
+  --color-danger: hsl(0, 60%, 53%);
+  --color-danger-bg: #603b3b;
   --color-danger-bg-hover: #6b2f2f;
   --color-danger-text: #ffdddd;
 
@@ -28,10 +29,10 @@
   --btn-accent-text: #f9f9f9;
   --btn-accent-border: #888888;
 
-  /* ghost button */
-  --btn-ghost-bg: transparent;
-  --btn-ghost-text: var(--color-text-muted);
-  --btn-ghost-border: transparent;
+  /* icon button */
+  --btn-icon-bg: transparent;
+  --btn-icon-text: var(--color-text-muted);
+  --btn-icon-border: transparent;
 }
 
 * {
@@ -43,146 +44,7 @@ body {
   color: var(--color-text);
 }
 
-.app-container {
-  display: flex;
-  margin: 0 auto;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-  max-width: 1230px;
-  padding: 40px 15px;
-  gap: 1rem;
-}
-
-.app-header,
-.app-header-margin-top {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-bottom: 2px solid var(--color-text);
-}
-.form-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: left;
-  justify-content: left;
-}
-
-.body-input-wrapper textarea {
-  min-height: 150px;
-  flex-grow: 1;
-  align-items: flex-start;
-}
-
-.app-header-margin-top {
-  margin-top: 30%;
-}
-
-.header-center {
-  align-items: center;
-}
-.main {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
-  gap: 1rem;
-}
-
-.actions-container {
-  display: flex;
-  align-items: center;
-  justify-content: start;
-}
-.btn-row {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  gap: 10px;
-}
-
-.notes-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-}
-
-.note-card {
-  background-color: var(--color-bg-card);
-  border-radius: 8px;
-  box-shadow:
-    0 1px 2px 0 rgba(60, 64, 67, 0.3),
-    0 1px 3px 1px rgba(60, 64, 67, 0.15);
-  padding: 16px;
-  transition: box-shadow 0.2s;
-  display: flex;
-  flex-direction: column;
-  height: 250px;
-}
-
-.note-card.pinned {
-  outline: var(--color-success) 1px solid;
-}
-
-.note-card:hover {
-  box-shadow:
-    0 1px 3px 0 rgba(60, 64, 67, 0.302),
-    0 4px 8px 3px rgba(60, 64, 67, 0.149);
-  outline: 1px solid var(--btn-accent-text);
-}
-
-.note-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 12px;
-  align-items: flex-start;
-}
-
-.note-actions {
-  display: flex;
-}
-
-.note-content {
-  flex-grow: 1;
-  overflow: hidden;
-}
-
-.note-content p {
-  color: var(--light-text);
-  line-height: 1.5;
-  word-break: break-word;
-  display: -webkit-box;
-  line-clamp: 6;
-  -webkit-line-clamp: 6;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.note-date {
-  color: var(--light-text);
-  font-size: 12px;
-  margin-top: 8px;
-  text-align: right;
-}
-.create-note-container {
-  border: var(--border-color) solid 1px;
-  padding: 20px;
-  border-radius: 15px;
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  gap: 20px;
-}
-
-.container-note-body {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-  padding: 8px;
-}
-
+/* ! musor */
 .widget-list {
   position: fixed;
   border: var(--border-color);
@@ -208,11 +70,19 @@ body {
   margin: 0px auto;
   transition: 0.3s ease-in-out;
 }
+
 .widget img {
   border-radius: 50%;
 }
+
 .widget:hover {
   background-color: antiquewhite;
+}
+
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 /* Адаптивность */
