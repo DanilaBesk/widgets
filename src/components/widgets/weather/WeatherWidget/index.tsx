@@ -1,8 +1,8 @@
-import styles from './styles.module.css';
-import { Skeleton } from '../../common/Skeleton';
-import { useWeather } from '../../../hooks/useWeather';
+import styles from './index.module.css';
+import { Skeleton } from '../../../common/Skeleton';
+import { useWeather } from '../../../../hooks/useWeather';
 import { toast } from 'sonner';
-import type { TWeatherWidget } from './types';
+import type { TWeatherWidget } from '../types';
 
 interface WeatherWidgetProps {
   config: TWeatherWidget['config'];

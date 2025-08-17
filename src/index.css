@@ -44,50 +44,8 @@ body {
   color: var(--color-text);
 }
 
-/* ! musor */
-.widget-list {
-  position: fixed;
-  border: var(--border-color);
-  border-radius: 15px;
-  height: 40vh;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  padding: 5px;
-  overflow-y: auto;
-  background-color: var(--card);
-}
-
-.widget {
-  flex: 0 0 46px;
-  border-radius: 15px;
-  width: 44px;
-  height: 44px;
-  background-color: var(--border-color);
-
-  align-items: flex-start;
-  justify-content: center;
-  margin: 0px auto;
-  transition: 0.3s ease-in-out;
-}
-
-.widget img {
-  border-radius: 50%;
-}
-
-.widget:hover {
-  background-color: antiquewhite;
-}
-
 .ellipsis {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-}
-
-/* Адаптивность */
-@media (max-width: 768px) {
-  .notes-container {
-    grid-template-columns: 1fr;
-  }
 }

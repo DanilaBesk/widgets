@@ -1,6 +1,6 @@
 import { toast } from 'sonner';
-import WeatherWidget from './weather/WeatherWidget.tsx';
-import { useData } from '../../hooks/useData.ts';
+import WeatherWidget from '../weather/WeatherWidget';
+import { useData } from '../../../hooks/useData.ts';
 
 export interface WidgetProps {
   widgetId: number;

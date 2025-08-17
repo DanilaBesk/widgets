@@ -1,14 +1,14 @@
-import Title from '../../common/Title';
+import Title from '../../../common/Title';
 import { useState } from 'react';
-import Button from '../../common/Button';
-import type { TWeatherWidget } from './types';
-import CheckBox from '../../common/CheckBox';
-import { Dialog } from '../../common/Dialog';
-import { ALL_OPTIONS } from './constants';
-import styles from './styles.module.css';
-import { useData } from '../../../hooks/useData';
-import { Flex } from '../../common/Flex';
-import type { ModalElementProps } from '../../../store/modal/types';
+import Button from '../../../common/Button';
+import type { TWeatherWidget } from '../types';
+import CheckBox from '../../../common/CheckBox';
+import { Dialog } from '../../../common/Dialog';
+import { ALL_OPTIONS } from '../constants';
+import styles from './index.module.css';
+import { useData } from '../../../../hooks/useData';
+import { Flex } from '../../../common/Flex';
+import type { ModalElementProps } from '../../../../store/modal/types';
 
 interface WeatherCreateDialogProps extends ModalElementProps {
   noteId: number;

@@ -1,12 +1,6 @@
-interface WeatherInfo {
-  text: string;
-  emoji: string;
-}
-interface WeatherCodeMessage {
-  [code: number]: WeatherInfo | undefined;
-}
+import type { WeatherCodeInfo } from './types';
 
-export const weatherCodeMessage: WeatherCodeMessage = {
+export const weatherCodeMessage: Record<string, WeatherCodeInfo | undefined> = {
   // Ясная погода
   0: { text: 'Ясно', emoji: '☀️' },
   1: { text: 'В основном ясно', emoji: '🌤️' },
