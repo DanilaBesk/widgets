@@ -1,0 +1,8 @@
+.pinned {
+    color: var(--color-pinned);
+}
+
+.pinned path,
+.pinned line {
+    fill: var(--color-pinned);
+}

@@ -1,8 +1,8 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { PageLayout } from "./components/PageLayout";
-import MainPage from "./pages/MainPage";
-import NotFoundPage from "./pages/NotFoundPage";
-import NotePage from "./models/notes/NotePage";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { PageLayout } from './pages/components/PageLayout';
+import MainPage from './pages/MainPage';
+import NotFoundPage from './pages/NotFoundPage';
+import NotePage from './components/notes/NotePage';
 
 const AppRouter = () => {
   return (

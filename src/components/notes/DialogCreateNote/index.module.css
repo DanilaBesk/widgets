@@ -1,0 +1,6 @@
+.textArea {
+    min-height: 150px;
+    flex-grow: 1;
+    align-items: flex-start;
+    /* ! нах эти свойства? */
+}
