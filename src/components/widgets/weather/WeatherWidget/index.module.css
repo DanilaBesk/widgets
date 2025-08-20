@@ -1,102 +1,70 @@
 .widget {
-    flex: 0 0 46px;
-    border-radius: 15px;
-    width: 44px;
-    height: 44px;
-    background-color: var(--border-color);
-
-    align-items: flex-start;
-    justify-content: center;
-    margin: 0px auto;
-    transition: 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 12px;
+    background: var(--color-bg);
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    max-width: 100%;
 }
 
-.widget img {
-    border-radius: 50%;
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
-.widget:hover {
-    background-color: antiquewhite;
+.loading,
+.error,
+.empty {
+    padding: 16px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--color-text-muted);
 }
 
+.error {
+    color: var(--color-danger);
+}
 
-.weatherIcon {
-    font-size: 1.4rem;
-    margin: 0;
-    min-width: 40px;
+.row {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 8px 0;
+}
+
+.card {
+    flex: 0 0 auto;
+    min-width: 120px;
+    background: var(--color-bg-card);
+    border-radius: 12px;
+    padding: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.item {
+    font-size: 14px;
+}
+
+.time {
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
+    gap: 4px;
+    font-weight: bold;
+    margin-bottom: 6px;
 }
 
-.temperatureBlock {
-    text-transform: capitalize;
-    padding-left: 8px;
-    flex-shrink: 0;
+.dayLabel {
+    font-weight: 400;
+    font-size: 0.875rem;
 }
 
-.temperatureBlock h1 {
-    margin: 0;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--color-text);
-    white-space: nowrap;
-}
-
-.weatherDescription {
-    flex: 1;
-    min-width: 0;
-    overflow: hidden;
-}
-
-.weatherDescription h1 {
-    margin: 0;
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: var(--color-text);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    line-height: 1.2;
-}
-
-@media (max-width: 650px) {
-    .weatherIcon {
-        font-size: 1.4rem;
-        margin: 0;
-        min-width: 40px;
-        display: block;
-        margin-right: 5px;
-    }
-
-    .weatherDescription {
-        display: none;
-    }
-
-    .temperatureBlock {
-        font-size: 1.4rem;
-        margin: 0;
-    }
-
-    .temperatureBlock h1 {
-        font-size: 1.1rem;
-    }
-}
-
-@media (max-width: 450px) {
-    .weatherIcon {
-        font-size: 1.4rem;
-        margin-top: 5px;
-        min-width: 40px;
-        margin-right: 0px;
-    }
-
-    .weatherDescription {
-        display: none;
-    }
-
-    .temperatureBlock {
-        display: none;
-    }
+.valuesRow {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    font-size: 0.9rem;
 }

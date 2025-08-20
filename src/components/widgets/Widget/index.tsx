@@ -1,5 +1,5 @@
 import { toast } from 'sonner';
-import WeatherWidget from '../weather/WeatherWidget';
+import { WeatherWidget } from '../weather/WeatherWidget';
 import { useData } from '../../../hooks/useData.ts';
 
 export interface WidgetProps {
@@ -17,7 +17,7 @@ const Widget = ({ widgetId }: WidgetProps) => {
 
   switch (widget.type) {
     case 'weather':
-      return <WeatherWidget config={widget.config} />;
+      return <WeatherWidget options={widget.config} />;
   }
 };
 
