@@ -1,0 +1,87 @@
+.selectWrapper {
+    position: relative;
+    display: block;
+}
+
+/* сам селект */
+.select {
+    display: inline-block;
+
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+
+    cursor: pointer;
+    outline: none;
+
+    /* убираем нативную стрелку */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* IE/Edge Legacy */
+.select::-ms-expand {
+    display: none;
+}
+
+.select:focus {
+    border-color: var(--color-border-focus);
+    box-shadow: 0 0 0 2px rgba(153, 153, 153, 0.3);
+}
+
+.select:disabled {
+    background-color: var(--color-disabled-bg);
+    color: var(--color-disabled-text);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* размеры */
+.sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+.md {
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+}
+
+.lg {
+    padding: 0.625rem 0.875rem;
+    font-size: 1.25rem;
+}
+
+.selectWrapper::after {
+    content: "";
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-55%) rotate(45deg);
+    width: 0.5rem;
+    height: 0.5rem;
+
+    border-right: 2px solid var(--color-text-muted);
+    border-bottom: 2px solid var(--color-text-muted);
+
+    pointer-events: none;
+}
+
+/* Стили опций — работают не везде (ограничения браузеров) */
+.select option {
+    background-color: var(--color-bg-card);
+    color: var(--color-text);
+}
+
+/* многие браузеры игнорируют :hover у option */
+.select option:disabled {
+    color: var(--color-disabled-text);
+}
+
+.select {
+    padding-right: 2rem;
+}
