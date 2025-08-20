@@ -91,7 +91,7 @@ const CurrentWeather: React.FC<PropsCurrent> = ({ data }) => {
 
   return (
     <div className={styles.row}>
-      <Flex direction="column" gap="0.375rem">
+      <Flex gap="0.75rem">
         {sortGroups(Object.entries(groups)).map(([baseKey, { values }]) => (
           <WeatherItem key={baseKey} option={baseKey as WeatherOption} values={values} />
         ))}
