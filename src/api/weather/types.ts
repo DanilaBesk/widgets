@@ -29,17 +29,25 @@ export type DailyWeatherInfo =
   | 'precipitation_sum'
   | 'precipitation_hours'
   | 'precipitation_probability_max'
-  | 'precipitation'
   | 'wind_speed_10m_max';
 
-type StrictPartial<Keys extends string> = {
+type BooleanPartial<Keys extends string> = {
   [K in Keys]?: boolean;
 };
 
+export type WeatherKeys = 'current' | 'hourly' | 'daily';
+export type HourlyTemporalResolution = 'hourly_1' | 'hourly_3' | 'hourly_6';
+
 export type Options = {
-  current?: StrictPartial<CurrentWeatherInfo>;
-  hourly?: StrictPartial<HourlyWeatherInfo>;
-  daily?: StrictPartial<DailyWeatherInfo>;
+  current?: BooleanPartial<CurrentWeatherInfo>;
+  hourly?: BooleanPartial<HourlyWeatherInfo>;
+  daily?: BooleanPartial<DailyWeatherInfo>;
+
+  forecast_hours?: number;
+  past_hours?: number;
+  temporal_resolution?: HourlyTemporalResolution;
+  forecast_days?: number;
+  past_days?: number;
 };
 
 type ResponseTypeMapper<T extends string> = {
@@ -57,12 +65,12 @@ type BaseResponse = {
 };
 
 export type FetchResponse = BaseResponse & {
-  current_units?: Partial<Record<CurrentWeatherInfo, string>> & { time: string };
-  current?: Partial<ResponseTypeMapper<CurrentWeatherInfo>> & { time: string };
+  current_units?: Partial<Record<CurrentWeatherInfo, string>> & { time: string; interval: string };
+  current?: Partial<ResponseTypeMapper<CurrentWeatherInfo>> & { time: string; interval: number };
 
   hourly_units?: Partial<Record<HourlyWeatherInfo, string>> & { time: string };
-  hourly?: Partial<ResponseTypeMapper<HourlyWeatherInfo>> & { time: string };
+  hourly?: Partial<ResponseTypeMapper<HourlyWeatherInfo>> & { time: string[] };
 
-  daily_units?: Partial<ResponseTypeMapper<DailyWeatherInfo>> & { time: string };
-  daily?: Partial<Record<DailyWeatherInfo, (number | string)[]>> & { time: string };
+  daily_units?: Partial<Record<DailyWeatherInfo, string>> & { time: string };
+  daily?: Partial<ResponseTypeMapper<DailyWeatherInfo>> & { time: string[] };
 };

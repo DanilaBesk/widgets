@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { FetchResponse, Options } from './types';
+import type { FetchResponse, Options, WeatherKeys } from './types';
 
 const baseURL = 'https://api.open-meteo.com/v1/forecast';
 
@@ -9,7 +9,11 @@ export async function fetchWeather(params: {
   options: Options;
 }): Promise<FetchResponse> {
   const { latitude, longitude, options } = params;
-  const settings: Record<string, string> = {};
+  const settings = {
+    ...{ ...options, current: undefined, hourly: undefined, daily: undefined },
+  } as {
+    [K in keyof Options]?: K extends WeatherKeys ? string : Options[K];
+  };
 
   for (const section of ['current', 'hourly', 'daily'] as const) {
     const keys = Object.entries(options[section] ?? {})
