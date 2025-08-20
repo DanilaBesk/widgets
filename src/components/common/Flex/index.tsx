@@ -9,6 +9,7 @@ interface FlexProps<T extends ElementType = 'div'> extends React.HTMLAttributes<
   items?: 'start' | 'center' | 'end' | 'stretch';
   self?: 'auto' | 'start' | 'center' | 'end' | 'stretch';
   gap?: number | string;
+  flex?: string;
   wrap?: boolean;
 }
 
@@ -19,6 +20,7 @@ export const Flex = <T extends ElementType = 'div'>({
   items = 'stretch',
   self,
   gap,
+  flex,
   wrap = false,
   className,
   children,
@@ -38,7 +40,7 @@ export const Flex = <T extends ElementType = 'div'>({
         wrap && styles.wrap,
         className,
       )}
-      style={{ ...style, gap }}
+      style={{ ...style, gap, flex }}
       {...props}
     >
       {children}
