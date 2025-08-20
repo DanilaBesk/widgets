@@ -39,39 +39,37 @@ const DialogCreateNote = ({ close }: ModalElementProps) => {
   return (
     <Dialog onDialogClose={close}>
       <Title level={1}>Создание заметок</Title>
-      <div>
-        <Flex
-          as="form"
-          direction="column"
-          justify="start"
-          gap="0.625rem"
-          onSubmit={createNoteClickHandler}
-        >
-          <Input
-            compSize="lg"
-            type="text"
-            placeholder="Введите заголовок заметки"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <TextArea
-            className={styles.textArea}
-            compSize="lg"
-            placeholder="Введите текст заметки"
-            value={body}
-            onChange={(e) => setBody(e.target.value)}
-          />
-          <Flex justify="end">
-            <Button onClick={onPinClickHandler} variant="icon">
-              <Pin isPinned={newNoteIsPinned} />
-            </Button>
-            {/* //TODO: на этом фоне кнопка акцента выглядит ужасно */}
-            <Button type="submit" variant="accent">
-              Создать
-            </Button>
-          </Flex>
+      <Flex
+        as="form"
+        direction="column"
+        justify="start"
+        gap="0.625rem"
+        onSubmit={createNoteClickHandler}
+      >
+        <Input
+          compSize="lg"
+          type="text"
+          placeholder="Введите заголовок заметки"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <TextArea
+          className={styles.textArea}
+          compSize="lg"
+          placeholder="Введите текст заметки"
+          value={body}
+          onChange={(e) => setBody(e.target.value)}
+        />
+        <Flex justify="end">
+          <Button onClick={onPinClickHandler} variant="icon">
+            <Pin isPinned={newNoteIsPinned} />
+          </Button>
+          {/* //TODO: на этом фоне кнопка акцента выглядит ужасно */}
+          <Button type="submit" variant="accent">
+            Создать
+          </Button>
         </Flex>
-      </div>
+      </Flex>
     </Dialog>
   );
 };

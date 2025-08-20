@@ -25,6 +25,7 @@ export function useWeather(config: TWeatherWidget['config']) {
 
       setData(response);
     } catch (error) {
+      console.log('Ошибка получения погоды:', error);
       setError(error instanceof Error ? error : new Error('Неизвестная ошибка получения погоды'));
       setData(null);
     } finally {

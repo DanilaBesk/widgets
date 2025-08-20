@@ -44,7 +44,7 @@ export function useGeolocation(options?: Props) {
         setLatitude(roundToTwoDecimals(position.coords.latitude));
         setLongitude(roundToTwoDecimals(position.coords.longitude));
       } catch (err) {
-        console.log(err);
+        console.log('Ошибка получения геолокации:', err);
         if (!isMounted) return;
         setError(err as GeolocationPositionError);
       } finally {

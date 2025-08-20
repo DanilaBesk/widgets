@@ -4,7 +4,6 @@ import styles from './index.module.css';
 
 export const NoteList = () => {
   const notes = useData((ctx) => ctx.notes);
-  console.log('render', notes);
   return (
     <div className={styles.container}>
       {Object.values(notes)

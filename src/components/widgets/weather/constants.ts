@@ -36,7 +36,6 @@ export const ALL_OPTIONS = {
     'precipitation_sum',
     'precipitation_hours',
     'precipitation_probability_max',
-    'precipitation',
     'wind_speed_10m_max',
   ],
 } satisfies {
