@@ -1,4 +1,4 @@
-import Title from "../../components/common/title/title";
+import Title from '../../components/common/title/title';
 
 export const NoteNotFound = () => {
   return (

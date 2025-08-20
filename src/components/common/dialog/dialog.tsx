@@ -1,5 +1,5 @@
-import { X } from "lucide-react";
-import styles from "./dialog.module.css";
+import { X } from 'lucide-react';
+import styles from './dialog.module.css';
 
 interface DialogProps {
   onDialogClose?: () => void;

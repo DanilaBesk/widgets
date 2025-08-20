@@ -1,24 +1,24 @@
-import { Dialog } from "../../components/common/dialog/dialog";
-import Title from "../../components/common/title/title";
-import { useState } from "react";
-import Button from "../../components/common/button/button";
-import Input from "../../components/common/input/input";
-import { useNotes } from "./useNotes";
-import { Pin } from "lucide-react";
-import TextArea from "../../components/common/textarea/textArea";
-import { toast } from "sonner";
+import { Dialog } from '../../components/common/dialog/dialog';
+import Title from '../../components/common/title/title';
+import { useState } from 'react';
+import Button from '../../components/common/button/button';
+import Input from '../../components/common/input/input';
+import { Pin } from 'lucide-react';
+import TextArea from '../../components/common/textarea/textArea';
+import { toast } from 'sonner';
+import { useData } from '../../hooks/useData';
 
 interface NoteCreateDialogProps {
   open: boolean;
   onClose: () => void;
 }
 
-const DialogCreateForm = ({ open, onClose }: NoteCreateDialogProps) => {
+const DialogCreateNote = ({ open, onClose }: NoteCreateDialogProps) => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [newNoteIsPinned, setNewNoteIsPinned] = useState(false);
 
-  const { addNote } = useNotes();
+  const addNote = useData((ctx) => ctx.addNote);
 
   const createNoteClickHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -29,7 +29,7 @@ const DialogCreateForm = ({ open, onClose }: NoteCreateDialogProps) => {
       setNewNoteIsPinned(false);
       onClose();
     } else {
-      toast.error("Введите заголовок и текст заметок");
+      toast.error('Введите заголовок и текст заметок');
     }
   };
   const onPinClickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -62,15 +62,11 @@ const DialogCreateForm = ({ open, onClose }: NoteCreateDialogProps) => {
             <Button onClick={onPinClickHandler} variant="ghost" compSize="sm">
               <Pin
                 size={20}
-                color={newNoteIsPinned ? "#46e856ff" : "#a3a3a3ff"}
-                style={{ rotate: newNoteIsPinned ? "-90deg" : "0deg" }}
+                color={newNoteIsPinned ? '#46e856ff' : '#a3a3a3ff'}
+                style={{ rotate: newNoteIsPinned ? '-90deg' : '0deg' }}
               />
             </Button>
-            <Button
-              type="submit"
-              variant="accent"
-              compSize="lg"
-            >
+            <Button type="submit" variant="accent" compSize="lg">
               Create note
             </Button>
           </div>
@@ -79,4 +75,4 @@ const DialogCreateForm = ({ open, onClose }: NoteCreateDialogProps) => {
     </Dialog>
   );
 };
-export default DialogCreateForm;
+export default DialogCreateNote;

@@ -1,7 +1,7 @@
-import cn from "classnames";
-import styles from "./title.module.css";
+import cn from 'classnames';
+import styles from './title.module.css';
 
-import * as React from "react";
+import * as React from 'react';
 
 type TitleLevel = 1 | 2 | 3 | 4;
 
@@ -28,10 +28,10 @@ export default function Title({
         styles.title,
         styles[`h${level}`],
         subtle && styles.subtle,
-        className
+        className,
       ),
       ...props,
     },
-    children
+    children,
   );
 }

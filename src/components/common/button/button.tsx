@@ -1,15 +1,15 @@
-import React from "react";
-import styles from "./button.module.css";
-import cn from "classnames";
+import React from 'react';
+import styles from './button.module.css';
+import cn from 'classnames';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "default" | "accent" | "danger" | "ghost";
-  compSize?: "sm" | "md" | "lg";
+  variant?: 'default' | 'accent' | 'danger' | 'ghost';
+  compSize?: 'sm' | 'md' | 'lg';
 }
 
 export default function Button({
-  variant = "default",
-  compSize = "md",
+  variant = 'default',
+  compSize = 'md',
   className,
   ...props
 }: ButtonProps) {
@@ -19,7 +19,7 @@ export default function Button({
         styles.button,
         styles[variant],
         styles[compSize],
-        className
+        className,
       )}
       {...props}
     />

@@ -1,14 +1,14 @@
-import React from "react";
-import styles from "./textArea.module.css";
-import cn from "classnames";
+import React from 'react';
+import styles from './textArea.module.css';
+import cn from 'classnames';
 
-interface TextAreaProps extends React.ComponentProps<"textarea"> {
-  compSize?: "sm" | "md" | "lg";
+interface TextAreaProps extends React.ComponentProps<'textarea'> {
+  compSize?: 'sm' | 'md' | 'lg';
   isInvalid?: boolean;
 }
 
 export default function TextArea({
-  compSize = "md",
+  compSize = 'md',
   isInvalid = false,
   className,
   ...props
@@ -19,7 +19,7 @@ export default function TextArea({
         styles.textArea,
         styles[compSize],
         { [styles.invalid]: isInvalid },
-        className
+        className,
       )}
       {...props}
     />

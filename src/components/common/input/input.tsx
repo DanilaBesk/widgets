@@ -1,14 +1,14 @@
-import React from "react";
-import styles from "./input.module.css";
-import cn from "classnames";
+import React from 'react';
+import styles from './input.module.css';
+import cn from 'classnames';
 
-interface InputProps extends React.ComponentProps<"input"> {
-  compSize?: "sm" | "md" | "lg";
+interface InputProps extends React.ComponentProps<'input'> {
+  compSize?: 'sm' | 'md' | 'lg';
   isInvalid?: boolean;
-};
+}
 
 export default function Input({
-  compSize = "md",
+  compSize = 'md',
   isInvalid = false,
   className,
   ...props
@@ -19,7 +19,7 @@ export default function Input({
         styles.input,
         styles[compSize],
         { [styles.invalid]: isInvalid },
-        className
+        className,
       )}
       {...props}
     />

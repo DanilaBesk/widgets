@@ -1,0 +1,124 @@
+.weatherIcon {
+    font-size: 1.4rem;
+    margin: 0;
+    min-width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.temperatureBlock {
+    text-transform: capitalize;
+    padding-left: 8px;
+    flex-shrink: 0;
+}
+
+.temperatureBlock h1 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    white-space: nowrap;
+}
+
+.weatherDescription {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.weatherDescription h1 {
+    margin: 0;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2;
+}
+
+.weatherOptionsBlock {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: start;
+}
+
+@media (max-width: 650px) {
+    .weatherIcon {
+        font-size: 1.4rem;
+        margin: 0;
+        min-width: 40px;
+        display: block;
+        margin-right: 5px;
+    }
+
+    .weatherDescription {
+        display: none;
+    }
+
+    .temperatureBlock {
+        font-size: 1.4rem;
+        margin: 0;
+    }
+
+    .temperatureBlock h1 {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 450px) {
+    .weatherIcon {
+        font-size: 1.4rem;
+        margin-top: 5px;
+        min-width: 40px;
+        margin-right: 0px;
+    }
+
+    .weatherDescription {
+        display: none;
+    }
+
+    .temperatureBlock {
+        display: none;
+    }
+}
+
+
+
+/* .widget {
+    display: flex;
+    width: 200px;
+    height: 50px;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-bg-card);
+    top: 20px;
+    right: 20px;
+    transition: 0.2s ease-in-out;
+    border-radius: 15px;
+    padding: 12px 16px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .widget:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  @media (max-width: 650px) {
+    .widget {
+      padding: 10px 15px;
+      width: 160px;
+      height: 50px;
+    }
+  }
+  
+  @media (max-width: 450px) {
+    .widget {
+      width: 70px;
+    }
+  } */

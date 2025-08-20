@@ -1,10 +1,8 @@
-import Title from "../components/common/title/title";
-import Button from "../components/common/button/button";
-import { NoteList } from "../models/notes/NoteList";
-import { useState } from "react";
-
-import DialogCreateForm from "../models/notes/DialogCreateNote";
-import WeatherWidget from "../models/widgets/WeatherWidjet";
+import Title from '../components/common/title/title';
+import Button from '../components/common/button/button';
+import { NoteList } from '../models/notes/NoteList';
+import { useState } from 'react';
+import DialogCreateNote from '../models/notes/DialogCreateNote';
 
 const MainPage = () => {
   const [open, setOpen] = useState(false);
@@ -26,8 +24,7 @@ const MainPage = () => {
           </Button>
         </div>
         <NoteList />
-        <DialogCreateForm open={open} onClose={() => setOpen(false)} />
-      <WeatherWidget/>
+        <DialogCreateNote open={open} onClose={() => setOpen(false)} />
       </main>
     </>
   );
