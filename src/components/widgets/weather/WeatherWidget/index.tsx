@@ -1,5 +1,5 @@
 import React from 'react';
-import type { FetchResponse, Options } from '../../../../api/weather/types';
+import type { FetchResponse, Options, WeatherKeys } from '../../../../api/weather/types';
 import styles from './index.module.css';
 import {
   Cloud,
@@ -19,8 +19,7 @@ import { AppearanceTemperature } from '../icons/AppearanceTemperature';
 import { RelativeHumidity } from '../icons/RelativeHumidity';
 import { unitLabels } from '../../../../i18n/units';
 import { Flex } from '../../../common/Flex';
-
-const ICON_SIZE = 18;
+import cn from 'classnames';
 
 const PRIORITY_ORDER: WeatherOption[] = [
   'weather_code',
@@ -91,9 +90,14 @@ const CurrentWeather: React.FC<PropsCurrent> = ({ data }) => {
 
   return (
     <div className={styles.row}>
-      <Flex gap="0.75rem">
+      <Flex gap="0.875rem">
         {sortGroups(Object.entries(groups)).map(([baseKey, { values }]) => (
-          <WeatherItem key={baseKey} option={baseKey as WeatherOption} values={values} />
+          <WeatherItem
+            key={baseKey}
+            option={baseKey as WeatherOption}
+            values={values}
+            weatherKey="current"
+          />
         ))}
       </Flex>
     </div>
@@ -147,7 +151,12 @@ const HourlyWeather: React.FC<PropsHourly> = ({ data }) => {
             </div>
             <Flex direction="column" gap="0.375rem">
               {sortGroups(Object.entries(groups)).map(([baseKey, { values }]) => (
-                <WeatherItem key={baseKey} option={baseKey as WeatherOption} values={values} />
+                <WeatherItem
+                  key={baseKey}
+                  option={baseKey as WeatherOption}
+                  values={values}
+                  weatherKey="hourly"
+                />
               ))}
             </Flex>
           </div>
@@ -177,7 +186,12 @@ const DailyWeather: React.FC<PropsDaily> = ({ data }) => {
             </div>
             <Flex direction="column" gap="0.375rem">
               {sortGroups(Object.entries(groups)).map(([baseKey, { values }]) => (
-                <WeatherItem key={baseKey} option={baseKey as WeatherOption} values={values} />
+                <WeatherItem
+                  key={baseKey}
+                  option={baseKey as WeatherOption}
+                  values={values}
+                  weatherKey="daily"
+                />
               ))}
             </Flex>
           </div>
@@ -187,13 +201,15 @@ const DailyWeather: React.FC<PropsDaily> = ({ data }) => {
   );
 };
 
-const WeatherItem = ({
-  option,
-  values,
-}: {
+interface WeatherItemProps {
   option: WeatherOption | 'sun_rise_set';
   values: { key: string; value: string | number; unit?: string }[];
-}) => {
+  weatherKey: WeatherKeys;
+}
+
+const WeatherItem = ({ option, values, weatherKey }: WeatherItemProps) => {
+  const ICON_SIZE = weatherKey === 'current' ? 24 : 18;
+
   const renderValues = () =>
     values.map(({ key, value, unit }) => {
       const label = key.endsWith('_max')
@@ -213,6 +229,11 @@ const WeatherItem = ({
     });
 
   const renderContent = () => {
+    const className = cn(
+      styles.valuesRow,
+      weatherKey === 'current' ? styles.textMd : styles.textSm,
+    );
+
     switch (option) {
       case 'weather_code':
         return <>{WeatherCodeMessage[values[0].value as any] ?? 'Неизвестно'}</>;
@@ -221,7 +242,7 @@ const WeatherItem = ({
         return (
           <>
             <Thermometer size={ICON_SIZE} />
-            <div className={styles.valuesRow}>{renderValues()}</div>
+            <div className={className}>{renderValues()}</div>
           </>
         );
 
@@ -229,7 +250,7 @@ const WeatherItem = ({
         return (
           <>
             <AppearanceTemperature size={ICON_SIZE} />
-            <div className={styles.valuesRow}>{renderValues()}</div>
+            <div className={styles.className}>{renderValues()}</div>
           </>
         );
 
@@ -238,7 +259,7 @@ const WeatherItem = ({
         return (
           <>
             <CloudRain size={ICON_SIZE} />
-            <div className={styles.valuesRow}>{renderValues()}</div>
+            <div className={styles.className}>{renderValues()}</div>
           </>
         );
 
@@ -265,7 +286,7 @@ const WeatherItem = ({
         return (
           <>
             <Cloud size={ICON_SIZE} />
-            <div className={styles.valuesRow}>{renderValues()}</div>
+            <div className={styles.className}>{renderValues()}</div>
           </>
         );
 
@@ -273,7 +294,7 @@ const WeatherItem = ({
         return (
           <>
             <RelativeHumidity size={ICON_SIZE} />
-            <div className={styles.valuesRow}>{renderValues()}</div>
+            <div className={styles.className}>{renderValues()}</div>
           </>
         );
 
@@ -292,7 +313,7 @@ const WeatherItem = ({
         return (
           <>
             <Wind size={ICON_SIZE} />
-            <div className={styles.valuesRow}>{renderValues()}</div>
+            <div className={className}>{renderValues()}</div>
           </>
         );
 
@@ -302,7 +323,11 @@ const WeatherItem = ({
   };
 
   return (
-    <Flex items="center" gap="0.25rem" className={styles.item}>
+    <Flex
+      items="center"
+      gap="0.25rem"
+      className={weatherKey === 'current' ? styles.textMd : styles.textSm}
+    >
       {renderContent()}
     </Flex>
   );

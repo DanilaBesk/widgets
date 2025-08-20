@@ -44,8 +44,12 @@
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-.item {
-    font-size: 14px;
+.textSm {
+    font-size: 0.9rem;
+}
+
+.textMd {
+    font-size: 1.2rem
 }
 
 .time {
@@ -66,5 +70,4 @@
     align-items: center;
     gap: 0.5rem;
     flex-wrap: wrap;
-    font-size: 0.9rem;
 }
