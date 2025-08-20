@@ -37,7 +37,8 @@ const NoteCard = ({ note }: NoteCardProps) => {
 
   const parsedNote = parseNote(note.text);
   if (parsedNote instanceof Error) {
-    return toast.error(parsedNote.message);
+    toast.error(parsedNote.message);
+    return null;
   }
 
   const text = parsedNote.filter((t) => typeof t === 'string').join();
