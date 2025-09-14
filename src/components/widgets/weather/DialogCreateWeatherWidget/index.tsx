@@ -62,14 +62,20 @@ const defaultSettings = {
 
 interface WeatherCreateDialogProps extends ModalElementProps {
   noteId: number;
-  position: number;
+  blockIndex: number;
+  cursorPosition: number;
 }
 
 const filterOptions = (setting: Required<Options>[WeatherKeys]) => {
   return Object.entries(setting).filter(([_, value]) => value === true);
 };
 
-const DialogCreateWeatherWidget = ({ close, noteId, position }: WeatherCreateDialogProps) => {
+const DialogCreateWeatherWidget = ({
+  close,
+  noteId,
+  blockIndex,
+  cursorPosition,
+}: WeatherCreateDialogProps) => {
   const [settings, setSettings] = useState<Required<Pick<Options, WeatherKeys>>>(defaultSettings);
 
   const [hourRange, setHourRange] = useState(10);
@@ -112,7 +118,7 @@ const DialogCreateWeatherWidget = ({ close, noteId, position }: WeatherCreateDia
     filteredSettings.forecast_days = dayRange;
     filteredSettings.past_days = dayPastRange;
 
-    addWidget('weather', filteredSettings, noteId, position);
+    addWidget('weather', filteredSettings, noteId, blockIndex, cursorPosition);
 
     setSettings(defaultSettings);
     close();

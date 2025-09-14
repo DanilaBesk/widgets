@@ -1,6 +1,7 @@
 import { toast } from 'sonner';
 import { WeatherWidget } from '../weather/WeatherWidget';
 import { useData } from '../../../hooks/useData.ts';
+import styles from './index.module.css';
 
 export interface WidgetProps {
   widgetId: number;
@@ -12,13 +13,14 @@ const Widget = ({ widgetId }: WidgetProps) => {
   const widget = widgets[widgetId];
   if (!widget) {
     toast.error('Виджет не найден.');
-    return <div color="red">Виджет не найден!</div>;
+    return null;
   }
-
+  let render;
   switch (widget.type) {
     case 'weather':
-      return <WeatherWidget options={widget.config} />;
+      render = <WeatherWidget options={widget.config} />;
   }
+  return <div className={styles.widget}>{render}</div>;
 };
 
 export default Widget;

@@ -1,6 +1,4 @@
 .notFoundHeader {
-    position: fixed;
-    inset: 0;
+  position: fixed;
+  inset: 0;
 }
-
-/* TODO: если страницы имеют одинаковый header то стоит его вынести в компонениты страниц? */

@@ -2,11 +2,9 @@ import { useNavigate } from 'react-router-dom';
 import { Pin } from '../icons/Pin';
 import Title from '../../common/Title';
 import Button from '../../common/Button';
-import { parseNote } from '../lib/parse-note';
-import { toast } from 'sonner';
 import type { TNote } from '../../../store/data/types';
 import { useData } from '../../../hooks/useData';
-import { formatDate } from '../lib/format-date';
+import { formatDate } from '../lib/formatDate';
 import styles from './index.module.css';
 import { Flex } from '../../common/Flex';
 import { Trash } from '../icons/Trash';
@@ -35,13 +33,10 @@ const NoteCard = ({ note }: NoteCardProps) => {
     updateNote(note.id, { isPinned: !note.isPinned });
   };
 
-  const parsedNote = parseNote(note.text);
-  if (parsedNote instanceof Error) {
-    toast.error(parsedNote.message);
-    return null;
-  }
-
-  const text = parsedNote.filter((t) => typeof t === 'string').join();
+  const shortContent = note.content
+    .filter((block) => block.type === 'text')
+    .map((block) => block.text)
+    .join(' ');
 
   return (
     <Flex direction="column" className={styles.noteMini} onClick={onViewClickHandler}>
@@ -57,7 +52,7 @@ const NoteCard = ({ note }: NoteCardProps) => {
         </Flex>
       </Flex>
       <div className={styles.noteContent}>
-        <p className="ellipsis">{text}</p>
+        <p className="ellipsis">{shortContent}</p>
       </div>
       <div className={styles.noteDate}>{formatDate(note.createdAt)}</div>
     </Flex>

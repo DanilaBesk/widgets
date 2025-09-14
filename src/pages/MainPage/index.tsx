@@ -20,7 +20,7 @@ const MainPage = () => {
         <Title level={1}>Заметки</Title>
       </Flex>
       <Flex as="main" direction="column" justify="center" gap="1rem">
-        <Flex items="center" justify="start" gap="">
+        <Flex items="center" justify="start">
           <Button variant="accent" onClick={openDialogCreateNote}>
             + Новая заметка
           </Button>

@@ -1,9 +1,13 @@
-import { memo, useCallback, useMemo, useState, type ReactNode } from 'react';
+import { memo, useCallback, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { ModalContext } from './context';
 import type { ModalStorage, ModalContextValue, ModalWrapper } from './types';
 
-export function ModalProvider({ children }: { children: ReactNode }) {
+interface ModalProviderProps {
+  children: React.ReactNode;
+}
+
+export function ModalProvider({ children }: ModalProviderProps) {
   const [modals, setModals] = useState<ModalStorage[]>([]);
 
   const openModal = useCallback<ModalContextValue['openModal']>((element) => {
