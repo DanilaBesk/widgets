@@ -4,10 +4,10 @@ import DialogCreateWeatherWidget from '../../components/widgets/weather/DialogCr
 import { useData } from '../../hooks/useData';
 import styles from './index.module.css';
 import { useModals } from '../../hooks/useModals';
-import NoteContent from '../../components/notes/NoteContent';
+import { Note } from '../../components/notes/Note';
 import { useNote } from '../../hooks/useNote';
 
-const NotePage = () => {
+export const NotePage = () => {
   const { note, cursorPosition } = useNote();
   const deleteNote = useData((ctx) => ctx.deleteNote);
   const navigate = useNavigate();
@@ -32,18 +32,13 @@ const NotePage = () => {
   return (
     <div className={styles.container}>
       <Button onClick={() => navigate('/')}>Назад</Button>
-      <Button variant="accent" onClick={() => {}}>
-        Редактировать
-      </Button>
       <Button variant="accent" onClick={openDialogWidgetCreate}>
         Создать виджет
       </Button>
       <Button variant="danger" onClick={handleDeleteNote}>
         Удалить
       </Button>
-      <NoteContent />
+      <Note />
     </div>
   );
 };
-
-export default NotePage;

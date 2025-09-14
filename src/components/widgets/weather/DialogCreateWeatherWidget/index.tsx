@@ -133,13 +133,13 @@ const DialogCreateWeatherWidget = ({
         {options.map((option) => (
           <Label key={option}>
             <CheckBox
-              checked={!!(settings[type] as any)[option]}
+              checked={!!(settings[type] as never)[option]}
               onChange={() =>
                 setSettings((prev) => ({
                   ...prev,
                   [type]: {
                     ...prev[type],
-                    [option]: !(prev[type] as any)?.[option],
+                    [option]: !(prev[type] as never)?.[option],
                   },
                 }))
               }

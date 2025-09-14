@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { PageLayout } from './pages/components/PageLayout';
-import MainPage from './pages/MainPage';
-import NotFoundPage from './pages/NotFoundPage';
-import NotePage from './pages/NotePage';
-import NoteGuard from './components/notes/NoteGuard';
+import { MainPage } from './pages/MainPage';
+import { NotFoundPage } from './pages/NotFoundPage';
+import { NotePage } from './pages/NotePage';
+import { NoteGuard } from './components/notes/NoteGuard';
 
 const AppRouter = () => {
   return (

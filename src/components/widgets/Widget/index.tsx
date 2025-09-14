@@ -20,7 +20,7 @@ const Widget = ({ widgetId }: WidgetProps) => {
     case 'weather':
       render = <WeatherWidget options={widget.config} />;
   }
-  return <div className={styles.widget}>{render}</div>;
+  return <section className={styles.widget}>{render}</section>;
 };
 
 export default Widget;

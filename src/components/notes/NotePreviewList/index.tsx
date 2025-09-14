@@ -1,8 +1,8 @@
 import { useData } from '../../../hooks/useData';
-import NoteCardMini from '../NoteCardMini';
+import { NotePreview } from '../NotePreview';
 import styles from './index.module.css';
 
-export const NoteList = () => {
+export const NotePreviewList = () => {
   const notes = useData((ctx) => ctx.notes);
   return (
     <div className={styles.container}>
@@ -10,7 +10,7 @@ export const NoteList = () => {
         .filter((note) => !!note)
         .sort((a, b) => (b.pinTime?.getTime() ?? 0) - (a.pinTime?.getTime() ?? 0))
         .map((note) => (
-          <NoteCardMini note={note} key={note.id} />
+          <NotePreview note={note} key={note.id} />
         ))}
     </div>
   );

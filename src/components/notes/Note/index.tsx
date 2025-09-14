@@ -1,9 +1,6 @@
 import { useCallback, useRef } from 'react';
-import Title from '../../common/Title';
 import Widget from '../../widgets/Widget';
 import styles from './index.module.css';
-import { formatDate } from '../lib/formatDate';
-import { Flex } from '../../common/Flex';
 import { NoteTextBlock } from '../NoteTextBlock';
 import { useData } from '../../../hooks/useData';
 import {
@@ -14,8 +11,11 @@ import {
 import { useBlockFocus } from '../../../hooks/useBlockFocus';
 import { useNote } from '../../../hooks/useNote';
 import { getBlockId } from '../lib/getBlockId';
+import { NoteTitle } from '../NoteTitle';
+import { Flex } from '../../common/Flex';
+import { NoteCreatedAt } from '../NoteCreatedAt';
 
-const NoteContent = () => {
+export const Note = () => {
   const { note, cursorPosition } = useNote();
   const updateNote = useData((ctx) => ctx.updateNote);
 
@@ -31,9 +31,9 @@ const NoteContent = () => {
   );
 
   return (
-    <Flex direction="column" className={styles.note}>
-      <Title level={1}>{note.title}</Title>
-      <div className={styles.createdAt}>{formatDate(note.createdAt)}</div>
+    <Flex direction="column" className={styles.container}>
+      <NoteTitle />
+      <NoteCreatedAt />
       <div>
         {note.content.map((block, index) =>
           block.type === 'text' ? (
@@ -61,5 +61,3 @@ const NoteContent = () => {
     </Flex>
   );
 };
-
-export default NoteContent;

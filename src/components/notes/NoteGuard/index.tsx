@@ -8,7 +8,7 @@ interface NoteGuardProps {
   children: React.ReactNode;
 }
 
-const NoteGuard = ({ children }: NoteGuardProps) => {
+export const NoteGuard = ({ children }: NoteGuardProps) => {
   const { id } = useParams();
   const note = useData((ctx) => (id ? ctx.notes[Number(id)] : undefined));
 
@@ -22,5 +22,3 @@ const NoteGuard = ({ children }: NoteGuardProps) => {
 
   return <NoteProvider note={note}>{children}</NoteProvider>;
 };
-
-export default NoteGuard;

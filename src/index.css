@@ -1,6 +1,7 @@
 :root {
   /* Общие цвета приложения */
   --color-bg-dark: #121212;
+  --color-bg-light: #707070;
   --color-bg-focus: #303030;
   --color-bg: #404040;
   --color-bg-card: #5e5e5e;

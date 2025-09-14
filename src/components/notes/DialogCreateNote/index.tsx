@@ -11,7 +11,7 @@ import { Flex } from '../../common/Flex';
 import styles from './index.module.css';
 import type { ModalElementProps } from '../../../store/modal/types';
 
-const DialogCreateNote = ({ close }: ModalElementProps) => {
+export const DialogCreateNote = ({ close }: ModalElementProps) => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [newNoteIsPinned, setNewNoteIsPinned] = useState(false);
@@ -73,4 +73,3 @@ const DialogCreateNote = ({ close }: ModalElementProps) => {
     </Dialog>
   );
 };
-export default DialogCreateNote;
