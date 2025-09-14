@@ -1,6 +1,8 @@
 :root {
   /* Общие цвета приложения */
   --color-bg-dark: #121212;
+  --color-bg-light: #707070;
+  --color-bg-focus: #303030;
   --color-bg: #404040;
   --color-bg-card: #5e5e5e;
   --color-text: #f0f0f0;
@@ -12,6 +14,7 @@
   --color-disabled-text: #999999;
   --color-success: #46e856ff;
   --color-pinned: #f9f9f9;
+  --color-bg-widget: rgb(48, 67, 94);
 
   /* danger color */
   --color-danger: hsl(0, 60%, 53%);
@@ -37,6 +40,10 @@
 
 * {
   font-family: 'Roboto', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {

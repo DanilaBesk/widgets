@@ -1,0 +1,7 @@
+.container {
+  position: relative;
+  margin-top: 0.75rem;
+  background-color: var(--color-bg-card);
+  border-radius: 1rem;
+  padding: 1rem;
+}

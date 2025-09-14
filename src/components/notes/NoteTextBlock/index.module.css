@@ -1,0 +1,65 @@
+.block {
+  position: relative;
+  width: 100%;
+  background: var(--color-bg);
+  border-radius: 1rem;
+  border-left: 3px solid var(--color-bg-light);
+}
+
+.textarea {
+  width: 100%;
+  padding: 0 0.75rem;
+  font-size: 1.125rem;
+  line-height: 200%;
+  outline: none;
+  color: var(--color-text);
+
+  resize: none;
+  overflow: hidden;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.textarea::placeholder {
+  color: var(--color-placeholder);
+}
+
+.textarea:disabled,
+.block:has(.textarea:disabled) {
+  cursor: not-allowed;
+  color: var(--color-disabled-text);
+}
+.block:has(.textarea:disabled) {
+  opacity: 0.6;
+}
+
+.block.content + .block.content,
+.block.content + .block.empty:focus-within,
+.block.empty:focus-within + .block.content,
+.block.empty:focus-within + .block.empty:focus-within,
+.block.empty:first-of-type:not(:has(~ .block.content, ~ .block.empty:focus-within))
+  + .block.content,
+.block.empty:first-of-type:not(:has(~ .block.content, ~ .block.empty:focus-within))
+  + .block.empty:focus-within {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.block.content:has(+ .block.content, + .block.empty:focus-within),
+.block.empty:focus-within:has(+ .block.content, + .block.empty:focus-within),
+.block.empty:first-of-type:has(+ .block.content, + .block.empty:focus-within) {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.block.empty:not(:focus-within, :first-of-type),
+.block.empty:first-of-type:has(~ .block.content, ~ .block.empty:focus-within):not(
+    .block.empty:focus-within
+  ) {
+  background-color: transparent;
+  border-left: none;
+}
+
+.block:focus-within {
+  background-color: var(--color-bg-focus);
+}

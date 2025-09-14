@@ -1,66 +1,52 @@
-import { useState, useEffect, useCallback, type ReactNode } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { toast } from 'sonner';
-import type { DataContextValue, TNoteStorage, TWidgetStorage } from './types';
+import type { DataContextValue, TNote, TNoteStorage, TWidget, TWidgetStorage } from './types';
 import { DataContext } from './context';
+import { NotesSerializerService } from '../../services/NoteSerializerService';
+import { WidgetsSerializerService } from '../../services/WidgetSerializerService';
 
-export function DataProvider({ children }: { children: ReactNode }) {
+interface DataProviderProps {
+  children: React.ReactNode;
+}
+
+export function DataProvider({ children }: DataProviderProps) {
   const NOTES_KEY = 'notes';
   const WIDGETS_KEY = 'widgets';
 
   const [notes, setNotes] = useState<TNoteStorage>(() => {
-    const stored = localStorage.getItem(NOTES_KEY);
-    if (!stored) return {};
-    try {
-      const parsed: TNoteStorage = JSON.parse(stored);
-      for (const id in parsed) {
-        const note = parsed[id];
-        if (note) {
-          note.createdAt = new Date(note.createdAt);
-          if (note.pinTime) {
-            note.pinTime = new Date(note.pinTime);
-          }
-        }
-      }
-      return parsed;
-    } catch (error) {
-      console.log('Ошибка чтения заметок:', error);
-      toast.error('Ошибка чтения заметок');
-      return {};
-    }
+    const serializedNotes = localStorage.getItem(NOTES_KEY);
+    if (!serializedNotes) return {};
+    return NotesSerializerService.parse(serializedNotes);
   });
 
   const [widgets, setWidgets] = useState<TWidgetStorage>(() => {
-    const stored = localStorage.getItem(WIDGETS_KEY);
-    try {
-      return stored ? JSON.parse(stored) : {};
-    } catch (error) {
-      console.log('Ошибка чтения виджетов:', error);
-      toast.error('Ошибка чтения виджетов');
-      return {};
-    }
+    const serializedWidgets = localStorage.getItem(WIDGETS_KEY);
+    if (!serializedWidgets) return {};
+    return WidgetsSerializerService.parse(serializedWidgets);
   });
 
   useEffect(() => {
-    localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
+    localStorage.setItem(NOTES_KEY, NotesSerializerService.serialize(notes));
   }, [notes]);
 
   useEffect(() => {
-    localStorage.setItem(WIDGETS_KEY, JSON.stringify(widgets));
+    localStorage.setItem(WIDGETS_KEY, WidgetsSerializerService.serialize(widgets));
   }, [widgets]);
 
   const addNote = useCallback<DataContextValue['addNote']>((title, text, isPinned) => {
     setNotes((prev) => {
       const id = Math.max(...Object.keys(prev).map(Number), 0) + 1;
+      const newNote: TNote = {
+        id,
+        title,
+        content: [{ type: 'text', text }],
+        createdAt: new Date(),
+        isPinned,
+        pinTime: isPinned ? new Date() : null,
+      };
       return {
         ...prev,
-        [id]: {
-          id,
-          title,
-          text,
-          createdAt: new Date(),
-          isPinned,
-          pinTime: isPinned ? new Date() : null,
-        },
+        [id]: newNote,
       };
     });
   }, []);
@@ -85,15 +71,57 @@ export function DataProvider({ children }: { children: ReactNode }) {
       } else if (fields.isPinned === false) {
         pinTime = null;
       }
+      const content = [...note.content];
+      if (fields.content) {
+        const { blockIndex, type } = fields.content;
+        if (content[blockIndex].type === 'text') {
+          if (type === 'replace') {
+            content[blockIndex].text = fields.content.text;
+          }
+          if (type === 'split') {
+            const prevText = content[blockIndex].text;
+            const cursor = fields.content.cursorPosition;
+
+            const before = prevText.slice(0, cursor);
+            const after = prevText.slice(cursor);
+            content.splice(
+              blockIndex,
+              1,
+              { type: 'text', text: before },
+              { type: 'text', text: after },
+            );
+          }
+          if (type === 'delete') {
+            //! TODO
+            const blockText = content[blockIndex].text;
+            content.splice(blockIndex, 1);
+            if (blockText.length > 0 && blockIndex > 0) {
+              for (let i = blockIndex - 1; i >= 0; i--) {
+                const target = content[i];
+                if (target.type === 'text') {
+                  target.text += blockText;
+                  break;
+                }
+              }
+            }
+          }
+        }
+      }
+      const updatedNote: TNote = {
+        ...note,
+        ...fields,
+        pinTime,
+        content,
+      };
       return {
         ...prev,
-        [id]: { ...note, ...fields, pinTime },
+        [id]: updatedNote,
       };
     });
   }, []);
 
   const addWidget = useCallback<DataContextValue['addWidget']>(
-    (type, config, noteId, position) => {
+    (type, config, noteId, blockIndex) => {
       setNotes((prevNotes) => {
         const note = prevNotes[noteId];
         if (!note) {
@@ -107,13 +135,15 @@ export function DataProvider({ children }: { children: ReactNode }) {
           [newId]: { id: newId, type, config },
         }));
 
-        const widgetAnchor = `<${newId}>`;
+        const updatedContent = note.content;
+        updatedContent.splice(blockIndex, 0, { id: newId, type: 'widget' });
+        const updatedNote: TNote = {
+          ...note,
+          content: updatedContent,
+        };
         return {
           ...prevNotes,
-          [noteId]: {
-            ...note,
-            text: note.text.slice(0, position) + widgetAnchor + note.text.slice(position),
-          },
+          [noteId]: updatedNote,
         };
       });
     },
@@ -133,9 +163,10 @@ export function DataProvider({ children }: { children: ReactNode }) {
         toast.error('Не смог найти виджет.');
         return prev;
       }
+      const udpatedWidget: TWidget = { ...prev[id], config };
       return {
         ...prev,
-        [id]: { ...prev[id], config },
+        [id]: udpatedWidget,
       };
     });
   }, []);

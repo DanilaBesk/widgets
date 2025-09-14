@@ -1,73 +1,73 @@
 .widget {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding: 12px;
-    background: var(--color-bg);
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 12px;
+  background: var(--color-bg-widget);
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  max-width: 100%;
 }
 
 .section {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .loading,
 .error,
 .empty {
-    padding: 16px;
-    text-align: center;
-    font-size: 14px;
-    color: var(--color-text-muted);
+  padding: 16px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--color-text-muted);
 }
 
 .error {
-    color: var(--color-danger);
+  color: var(--color-danger);
 }
 
 .row {
-    display: flex;
-    gap: 8px;
-    overflow-x: auto;
-    padding: 8px 0;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 8px 0;
 }
 
 .card {
-    flex: 0 0 auto;
-    min-width: 120px;
-    background: var(--color-bg-card);
-    border-radius: 12px;
-    padding: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  flex: 0 0 auto;
+  min-width: 120px;
+  background: var(--color-bg);
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .textSm {
-    font-size: 0.9rem;
+  font-size: 0.9rem;
 }
 
 .textMd {
-    font-size: 1.2rem
+  font-size: 1.2rem;
 }
 
 .time {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-weight: bold;
-    margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: bold;
+  margin-bottom: 6px;
 }
 
 .dayLabel {
-    font-weight: 400;
-    font-size: 0.875rem;
+  font-weight: 400;
+  font-size: 0.875rem;
 }
 
 .valuesRow {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
