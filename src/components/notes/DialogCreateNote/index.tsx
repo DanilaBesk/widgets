@@ -47,10 +47,12 @@ export const DialogCreateNote = ({ close }: ModalElementProps) => {
         onSubmit={createNoteClickHandler}
       >
         <Input
+          autoFocus
           compSize="lg"
           type="text"
           placeholder="Введите заголовок заметки"
           value={title}
+          max={200}
           onChange={(e) => setTitle(e.target.value)}
         />
         <TextArea
@@ -61,7 +63,7 @@ export const DialogCreateNote = ({ close }: ModalElementProps) => {
           onChange={(e) => setBody(e.target.value)}
         />
         <Flex justify="end">
-          <Button onClick={onPinClickHandler} variant="icon">
+          <Button type="button" onClick={onPinClickHandler} variant="icon">
             <Pin isPinned={newNoteIsPinned} />
           </Button>
           {/* //TODO: на этом фоне кнопка акцента выглядит ужасно */}
